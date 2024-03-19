@@ -100,3 +100,51 @@ a = 10
 
 - use the `+` operator to join two strings together.
 
+## Type Conversion
+
+- to convert a `String` to a `Integer` use method `to_i`
+- to convert a `String`to a `Float` use method `to_f`
+- to convert `Integers` and `Floats` to a `String` use method `to_s`
+- Examples:
+
+```irb
+irb :001 > '4'.to_i 
+=> 4 
+irb :002 > '4 hi there'.to_i 
+=> 4 
+irb :003 > 'hi there 4'.to_i 
+=> 0 
+irb :004 > '4'.to_f 
+=> 4.0 
+irb :005 > '4 hi there'.to_f 
+=> 4.0 
+irb :006 > 'hi there 4'.to_f 
+=> 0.0
+```
+
+## Basic Data Structures
+
+### Arrays
+
+- is used to organize information into an ordered list.
+- the list can be made up of any data type.
+- **Literal** is denoted by square brackets `[]` 
+- Each element in the array can be accessed via an index, starting at zero.
+
+### Hashes
+
+- Also referred as dictionary, is a set of key-value pairs.
+- **Literal** is represented by curly braces `{}` 
+- Key is usually represented by a [symbol](#Symbols) that points to a value (using `=>`) of any data type.
+- Have no order
+
+## Expressions and Return
+
+- `=>` is called a *hash rocket*
+- an **expression** is anything that can be evaluated and almost everything in Ruby is an expression.
+- An **expression** in Ruby always returns something (even an error or `nil`)
+
+## puts vs return
+
+- The `puts` method prints something to the screen and returns `nil`
+- **Expressions** do something and **return** something. The value returned is not necessarily the action that was performed.
