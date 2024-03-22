@@ -94,3 +94,116 @@ irb :001 > !(4 == 4)
 	2. `==`, `!=` **Equality**
 	3. `&&` - Logical AND
 	4. `||` - Logical OR
+
+## Ternary Operator
+
+- The **ternary operator** is a common Ruby idiom that makes a quick `if/else` statement easy and keeps it all on one line.
+
+```ruby
+irb :001 > true ? "this is true" : "this is not true" 
+=> "this is true" 
+irb :001 > false ? "this is true" : "this is not true" 
+=> "this is not true"
+```
+
+- Ternary expressions should usually be used to select between 2 values, not to choose between two actions.
+- The ternary expression's result should almost always be assigned to a variable, passed to a method as an argument, or returned by a method.
+
+```ruby
+foo = hitchhiker ? 42 : 3.1415    # Assign result of ?: to a variable
+puts(hitchhiker ? 42 : 3.1415)    # Pass result as argument
+return hitchhiker ? 42 : 3.1415    # Return result
+```
+
+## Case Statement
+
+- Case statements use the reserved words `case`, `when`, `else`, and `end`.
+- You can also save the result of a case statement into a variable.
+- 3 Examples:
+
+```ruby
+# Typical scenario
+
+a = 5
+
+case a
+when 5
+  puts "a is 5"
+when 6
+  puts "a is 6"
+else
+  puts "a is neither 5, nor 6"
+end
+```
+
+```ruby
+# save result into a variable
+
+a = 5
+
+answer = case a
+  when 5
+    "a is 5"
+  when 6
+    "a is 6"
+  else
+    "a is neither 5, nor 6"
+  end
+
+puts answer
+```
+
+```ruby
+# case statement without argument
+
+a = 5
+
+case
+when a == 5
+  puts "a is 5"
+when a == 6
+  puts "a is 6"
+else
+  puts "a is neither 5, nor 6"
+end
+```
+
+## True and False
+
+-  **In Ruby, every expression evaluates as true when used in flow control, except for `false` and `nil`.**
+
+```ruby
+a = 5
+if a
+  puts "how can this be true?"
+else
+  puts "it is not true"
+end
+```
+
+### Short-circuit evaluation
+
+- The `&&` and `||` logical operators use short-circuit evaluation.
+- These operators work with truthy and falsy values too, and they can also return truthy values instead of boolean values.
+- When using `&&` and `||`, the return value is always the value of the operand evaluated last.
+
+```ruby
+irb :001 > 3 || 'foo' # last evaluated operand is 3 
+=> 3 irb :002 > 'foo' || 3 # last evaluated operand is 'foo' 
+=> 'foo' 
+irb :003 > nil || 'foo' # last evaluated operand is 'foo' 
+=> 'foo' 
+irb :004 > nil && 'foo' # last evaluated operand is nil 
+=> nil 
+irb :005 > 3 && 'foo' # last evaluated operand is 'foo' 
+=> 'foo' 
+irb :006 > 'foo' && 3 # last evaluated operand is 3 
+=> 3
+```
+
+- When you want to convert a non-boolean value to a boolean you can use the `!!` operator (two consecutive `!` "not" operators)
+
+```ruby
+is_ok = !!(foo || bar)
+```
+- The expression `!!a` is equivalent to writing `!(!a)`. The inner `!` converts the value of `a` to `false` if it is truthy, or `true` if `a` is falsy. The outer `!` then flips `true` to `false` or `false` to `true`. In the end, we end up with a boolean value instead of a truthiness value
