@@ -45,3 +45,52 @@
 ### `>=` "greater than or equal to" operator
 
 - Anything to the left of the operator is greater than or equal to anything to the right.
+
+## Combining Expressions
+
+### Logical operators
+
+- `&&` and `||` don't always return `true` or `false`, but they do when they operate on boolean values.
+
+#### `&&` "and" operator
+
+- Expressions to the left and to the right of this operator have to be both true for the entire expression to be evaluated to true.
+
+```ruby
+irb :001 > (4 == 4) && (5 == 5) 
+=> true 
+irb :002 > (4 == 5) && (5 == 5) 
+=> false 
+irb :002 > (4 == 5) && (5 == 6) 
+=> false
+```
+
+#### `||` "or" operator
+
+- Either the expression to the left has to be true, or the expression to the right has to be true for the entire expression to be evaluated to true.
+
+```ruby
+irb :001 > (4 == 4) || (5 == 5) 
+=> true 
+irb :002 > (4 == 5) || (5 == 5) 
+=> true 
+irb :002 > (4 == 5) || (5 == 6) 
+=> false
+```
+
+#### `!` "not" operator
+
+- When you add this in front of a boolean expression it will change that boolean value to its opposite.
+
+```ruby
+irb :001 > !(4 == 4) 
+=> false
+```
+
+### Order of precedence
+
+- The following is a list of operations from highest order of precedence (top) to lowest (bottom):
+	1. `<=`, `<`, `>`, `>=` **Comparison**
+	2. `==`, `!=` **Equality**
+	3. `&&` - Logical AND
+	4. `||` - Logical OR
