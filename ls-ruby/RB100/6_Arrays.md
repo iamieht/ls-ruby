@@ -7,7 +7,7 @@
 
 ## Methods
 
-| Method              | What is does?                                                                                                  | Mutates the caller? | Returns                                                                           |
+| Method              | What it does?                                                                                                  | Mutates the caller? | Returns                                                                           |
 | ------------------- | -------------------------------------------------------------------------------------------------------------- | ------------------- | --------------------------------------------------------------------------------- |
 | **first**           | returns the first element of the array                                                                         | No                  | first element                                                                     |
 | **last**            | returns the last element of the array                                                                          | No                  | last element                                                                      |
