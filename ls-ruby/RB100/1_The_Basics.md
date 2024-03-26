@@ -21,6 +21,7 @@ nil                      # nil literal
 - is a list of characters in a specific sequence.
 - String [**literals**](#Literals) are either single quotes `'hi'` or double quotes `"hi"` 
 - **String interpolation** is allowed only with double quotes
+- Are **mutable**
 
 ```ruby
 # Ex. 1: with double quotes
