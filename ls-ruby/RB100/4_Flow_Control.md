@@ -189,7 +189,8 @@ end
 
 ```ruby
 irb :001 > 3 || 'foo' # last evaluated operand is 3 
-=> 3 irb :002 > 'foo' || 3 # last evaluated operand is 'foo' 
+=> 3 
+irb :002 > 'foo' || 3 # last evaluated operand is 'foo' 
 => 'foo' 
 irb :003 > nil || 'foo' # last evaluated operand is 'foo' 
 => 'foo' 
