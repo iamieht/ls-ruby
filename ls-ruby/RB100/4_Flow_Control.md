@@ -115,6 +115,22 @@ puts(hitchhiker ? 42 : 3.1415)    # Pass result as argument
 return hitchhiker ? 42 : 3.1415    # Return result
 ```
 
+## If Statement
+
+* `if` expressions can return a value
+* `if` statements use the reserved words: `if`, `elsif`, `else` and `end`.
+
+```ruby
+result = if operator == '1'
+          number1.to_i() + number2.to_i()
+        elsif operator == '2'
+          number1.to_i() - number2.to_i()
+        elsif operator == '3'
+          number1.to_i() * number2.to_i()
+        elsif operator == '4'
+          number1.to_f() / number2.to_f()
+        end
+```
 ## Case Statement
 
 - Case statements use the reserved words `case`, `when`, `else`, and `end`.
