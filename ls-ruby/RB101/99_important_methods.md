@@ -1,8 +1,9 @@
 # Important Methods
 
-| Name           | Description                                                         | Signature         |
-| -------------- | ------------------------------------------------------------------- | ----------------- |
-| [[#`inspect`]] | Returns a string containing a human-readable representation of _obj | inspect -> string |
+| Name              | Description                                                         | Signature         |
+| ----------------- | ------------------------------------------------------------------- | ----------------- |
+| [[#`inspect`]]    | Returns a string containing a human-readable representation of _obj | inspect -> string |
+|  [[#`abs`]]       ns the absolute value of `int`                                 | abs -> integer    |
 
 ## Examples
 
@@ -24,3 +25,13 @@ end
 Bar.new.inspect                  #=> "#<Bar:0x0300c868 @bar=1>"
 ```
 
+
+### `abs`
+
+```ruby
+(-12345).abs   #=> 12345
+-12345.abs     #=> 12345
+12345.abs      #=> 12345
+```
+
+ 
