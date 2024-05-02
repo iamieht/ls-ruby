@@ -67,3 +67,28 @@ puts stringy2(6) == '101010'
 puts stringy2(9) == '101010101'
 puts stringy2(4) == '1010'
 puts stringy2(7) == '1010101'
+
+# Further Exploration
+# Modify stringy so it takes an additional optional argument that defaults to 1. If the method is called with this argument set to 0, the method should return a String of alternating 0s and 1s, but starting with 0 instead of 1.
+
+def stringy_fe(num, default=1)
+  result = ""
+
+  if default == 1
+    num.times do |idx|
+      result += idx.even? ? '1' : '0'
+    end
+  elsif default == 0
+    num.times do |idx|
+      result += idx.odd? ? '1' : '0'
+    end
+  else
+    return "Invalid option"
+  end
+
+  return result
+end
+
+puts "Further Exploration"
+puts stringy_fe(6) == '101010'
+puts stringy_fe(6, 0) == '010101'
