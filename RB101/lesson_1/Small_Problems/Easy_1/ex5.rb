@@ -63,3 +63,8 @@ end
 
 print_in_box('')
 print_in_box('To boldly go where no one has gone before.')
+
+# Further Exploration
+# Modify this method so it will truncate the message if it will be too wide to fit inside a standard terminal window (80 columns, including the sides of the box). For a real challenge, try word wrapping very long messages so they appear on multiple lines, but still within a box.
+
+
