@@ -1,2 +1,19 @@
-welcome: "Welcome to Calculator! Enter your name:"
-valid_name: "Make sure to enter a valid name."
+en:
+  welcome: "Welcome to Calculator! Enter your name:"
+  valid_name: "Make sure to enter a valid name."
+  first_number: "What's the first number?"
+  second_number: "What's the second number?"
+  valid_number: "Hmm... that doesn't look like a valid number"
+  operator: "Must choose 1, 2, 3, or 4"
+  calculate_again: "Do you want to perform another calculation? (Y to calculate again)"
+  goodbye: "Thank you for using the calculator. Good bye!"
+
+es:
+  welcome: "Bienvenido a la Calculadora! Cuál es tu nombre?:"
+  valid_name: "Asegúrese the ingresar un nombre válido"
+  first_number: "Cuál es el primer número?"
+  second_number: "Cuál es el segundo número?"
+  valid_number: "Hmm... eso no parece un número válido"
+  operator: "Debe escoger entre 1, 2, 3 o 4"
+  calculate_again: "Quieres hacer otro cálculo? (Y para calcular de nuevo)"
+  goodbye: "Gracias por usar la Calculadora. Hasta luego!"
