@@ -42,11 +42,10 @@ end
 
 def get_input
   values = gets.chomp
-  values.split(' ')
 end
 
-def remove_whitespaces(array)
-  array.map { |word| word.split(' ')}.flatten
+def split(string)
+  string.split(' ')
 end
 
 def count_chars(array)
@@ -55,7 +54,6 @@ end
 
 prompt("Please write a word or multiple words: ")
 words = get_input
-# words = remove_whitespaces(input)
-number_of_chars = count_chars(words)
+number_of_chars = count_chars(split(words))
 
-puts "There are #{number_of_chars} characters in #{words}."
+puts "There are #{number_of_chars} characters in '#{words}'."
