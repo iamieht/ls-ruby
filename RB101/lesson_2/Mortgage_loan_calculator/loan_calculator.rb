@@ -63,9 +63,6 @@ def calc_monthly_interest_rate(apr)
   apr / 12
 end
 
-def calc_loan(loan_amount, monthly_int_rate, loan_duration)
-end
-
 def integer?(number)
   number.to_i.to_s == number
 end
@@ -85,6 +82,12 @@ def interest_rate?(interest_rate)
   interest_rate.to_f > 0 && interest_rate.to_f <= 100
 end
 
+def calc_loan(loan_amount, monthly_interest_rate, loan_term)
+  monthly_payment = loan_amount *
+                    (monthly_interest_rate /
+                    (1 - (1 + monthly_interest_rate)**(-loan_term)))
+end
+
 ### Main Program ##########
 def main()
   prompt('welcome')
@@ -95,19 +98,23 @@ def main()
   apr = get_interest_rate
 
   # Calculations
-  monthly_interest_rate = calc_monthly_interest_rate(apr)
+  annual_interest_rate = apr / 100
+  monthly_interest_rate = calc_monthly_interest_rate(annual_interest_rate)
+  monthly_payment = calc_loan(loan_amount, monthly_interest_rate, loan_term)
 
   # puts
   puts "Loan Amount = #{loan_amount}"
   puts "Loan Term = #{loan_term}"
   puts "Interest Rate = #{apr}"
   puts "Monthly Interest Rate = #{monthly_interest_rate}"
+  puts "Monthly Payment = #{monthly_payment.round(2)}"
 
 end
 
-#main
+main
 
 # Test Cases
 # p get_loan_amount
 # p get_loan_term
-p get_interest_rate
+#p get_interest_rate
+#p calc_loan(100000, 0.5, 120)
