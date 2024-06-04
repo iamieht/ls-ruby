@@ -24,15 +24,39 @@ def user_input(key)
 end
 
 def get_loan_amount()
-  loan_amount = user_input('loan_amount')
+  loop do
+    loan_amount = user_input('loan_amount')
+
+    if number?(loan_amount)
+      return loan_amount.to_f
+    else
+      prompt('valid_number')
+    end
+  end
 end
 
 def get_loan_term()
-  loan_duration = user_input('loan_term')
+  loop do
+    loan_term = user_input('loan_term')
+
+    if integer?(loan_term)
+      return loan_term.to_i
+    else
+      prompt('valid_month')
+    end
+  end
 end
 
 def get_interest_rate()
-  interest_rate = user_input('interest_rate')
+  loop do
+    interest_rate = user_input('interest_rate')
+
+    if number?(interest_rate)
+      return interest_rate.to_f
+    else
+      prompt('valid_number')
+    end
+  end
 end
 
 def calc_monthly_interest_rate(apr)
@@ -40,6 +64,14 @@ def calc_monthly_interest_rate(apr)
 end
 
 def calc_loan(loan_amount, monthly_int_rate, loan_duration)
+end
+
+def integer?(number)
+  number.to_i.to_s == number
+end
+
+def float?(number)
+  number.to_f.to_s == number
 end
 
 def number?(number)
@@ -73,3 +105,8 @@ def main()
 end
 
 main
+
+# Test Cases
+# p get_loan_amount
+# p get_loan_term
+# p get_interest_rate
