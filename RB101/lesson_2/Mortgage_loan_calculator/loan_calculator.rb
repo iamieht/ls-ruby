@@ -51,10 +51,10 @@ def get_interest_rate()
   loop do
     interest_rate = user_input('interest_rate')
 
-    if number?(interest_rate)
-      return interest_rate.to_f
+    if number?(interest_rate) && interest_rate?(interest_rate)
+        return interest_rate.to_f
     else
-      prompt('valid_number')
+      prompt('valid_interest_rate')
     end
   end
 end
@@ -82,6 +82,7 @@ def month?(month)
 end
 
 def interest_rate?(interest_rate)
+  interest_rate.to_f > 0 && interest_rate.to_f <= 100
 end
 
 ### Main Program ##########
@@ -104,9 +105,9 @@ def main()
 
 end
 
-main
+#main
 
 # Test Cases
 # p get_loan_amount
 # p get_loan_term
-# p get_interest_rate
+p get_interest_rate
