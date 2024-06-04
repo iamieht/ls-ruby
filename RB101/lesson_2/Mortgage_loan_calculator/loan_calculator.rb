@@ -19,7 +19,7 @@ end
 
 def user_input(key)
   message = messages(key, LANGUAGE)
-  print "==> #{message} "
+  print "=> #{message}"
   input = gets.chomp
 end
 
@@ -75,9 +75,6 @@ def number?(number)
   integer?(number) || float?(number)
 end
 
-def month?(month)
-end
-
 def interest_rate?(interest_rate)
   interest_rate.to_f > 0 && interest_rate.to_f <= 100
 end
@@ -90,31 +87,50 @@ end
 
 ### Main Program ##########
 def main()
+  system "clear"
   prompt('welcome')
+  prompt('separator')
+  puts
 
-  # User Input
-  loan_amount = get_loan_amount
-  loan_term = get_loan_term
-  apr = get_interest_rate
+  loop do
 
-  # Calculations
-  annual_interest_rate = apr / 100
-  monthly_interest_rate = calc_monthly_interest_rate(annual_interest_rate)
-  monthly_payment = calc_loan(loan_amount, monthly_interest_rate, loan_term)
+    # User Input
+    loan_amount = get_loan_amount
+    loan_term = get_loan_term
+    apr = get_interest_rate
 
-  # puts
-  puts "Loan Amount = #{loan_amount}"
-  puts "Loan Term = #{loan_term}"
-  puts "Interest Rate = #{apr}"
-  puts "Monthly Interest Rate = #{monthly_interest_rate}"
-  puts "Monthly Payment = #{monthly_payment.round(2)}"
+    # Calculations
+    annual_interest_rate = apr / 100
+    monthly_interest_rate = calc_monthly_interest_rate(annual_interest_rate)
+    monthly_payment = calc_loan(loan_amount, monthly_interest_rate, loan_term)
+    total_payments = monthly_payment * loan_term
+    total_interest = total_payments - loan_amount
+
+    # display results (move to a method)
+    puts
+    puts messages('results')
+    puts "Loan Amount           = $#{loan_amount}"
+    puts "Loan Term             = #{loan_term} Months"
+    puts "Interest Rate         = #{apr}%"
+    puts "Monthly Interest Rate = #{monthly_interest_rate}%"
+    puts "Monthly Payment       = $#{monthly_payment.round(2)}"
+    puts "Total of #{loan_term} Payments = $#{total_payments.round(2)}"
+    puts "Total Interest        = $#{total_interest.round(2)}"
+
+    # refactor
+    puts 'Would you like to do another calculation? (y/n)'
+    answer = gets.chomp
+
+    if answer == 'n'
+      break
+    end
+    system "clear"
+
+  end
+
+  puts "Thanks for using the Mortage/Loan Calculator"
 
 end
 
 main
 
-# Test Cases
-# p get_loan_amount
-# p get_loan_term
-#p get_interest_rate
-#p calc_loan(100000, 0.5, 120)
