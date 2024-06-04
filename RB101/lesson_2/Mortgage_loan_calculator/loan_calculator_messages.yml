@@ -1,0 +1,5 @@
+en:
+  welcome: "Welcome to Loan Calculator!"
+  loan_amount: "Loan Amount:"
+  loan_term: "Loan Term (Months):"
+  interest_rate: "Interest Rate (%):"
