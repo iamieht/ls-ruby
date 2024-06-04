@@ -5,3 +5,4 @@ en:
   interest_rate: "Interest Rate (%):"
   valid_number: "Hmm... that doesn't look like a valid number"
   valid_month: "Hmm... that doesn't look like a valid number of months"
+  valid_interest_rate: "Hmm... interest rate must be a number > 0 and <= 100"
