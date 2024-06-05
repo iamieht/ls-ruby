@@ -85,11 +85,11 @@ def calc_monthly_interest_rate(apr)
 end
 
 def integer?(number)
-  number.to_i.to_s == number
+  (number.to_i.to_s == number) && number.to_i > 0
 end
 
 def float?(number)
-  number.to_f.to_s == number
+  (number.to_f.to_s == number) && number.to_f > 0
 end
 
 def number?(number)
