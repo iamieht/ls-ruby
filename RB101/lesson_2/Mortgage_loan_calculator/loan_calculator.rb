@@ -104,6 +104,14 @@ def format_number(number)
   number.to_s.gsub(/(\d)(?=(\d{3})+(?!\d))/, "\\1,")
 end
 
+def display_results(array, lang='en')
+  puts
+  puts messages('results', LANGUAGE)
+  array.each do |element|
+    puts "#{element}"
+  end
+end
+
 ### Main Program ##########
 
 system "clear"
@@ -125,22 +133,23 @@ loop do
   total_interest = (total_payments - loan_amount)
 
   # Display the results
-  puts
-  puts messages('results', LANGUAGE)
-  puts "#{messages('label_loan_amount', LANGUAGE)}      = $#{
-    format_number(loan_amount)}"
-  puts "Loan Term                 = #{loan_term} Months"
-  puts "Annual Interest Rate      = #{apr} %"
-  puts "Monthly Interest Rate     = #{monthly_interest_rate.round(4)} %"
-  puts "Monthly Payment           = $#{format_number(
-    monthly_payment.round(2)
-  )}"
-  puts "Total of #{loan_term} Payments     = $#{format_number(
-    total_payments.round(2)
-  )}"
-  puts "Total Interest            = $#{format_number(total_interest.round(2))}"
-  puts messages('separator')
+  # puts
+  # puts messages('results', LANGUAGE)
+  # puts "#{messages('label_loan_amount', LANGUAGE)}      = $#{
+  #   format_number(loan_amount)}"
+  # puts "Loan Term                 = #{loan_term} Months"
+  # puts "Annual Interest Rate      = #{apr} %"
+  # puts "Monthly Interest Rate     = #{monthly_interest_rate.round(4)} %"
+  # puts "Monthly Payment           = $#{format_number(
+  #   monthly_payment.round(2)
+  # )}"
+  # puts "Total of #{loan_term} Payments     = $#{format_number(
+  #   total_payments.round(2)
+  # )}"
+  # puts "Total Interest            = $#{format_number(total_interest.round(2))}"
+  # puts messages('separator')
 
+  display_results([loan_amount, loan_term])
   # Another calculation?
   puts
   answer = get_answer
