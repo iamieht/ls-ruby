@@ -5,7 +5,7 @@
 require 'yaml'
 ### Constants ###########
 MESSAGES = YAML.load_file('loan_calculator_messages.yml')
-LANGUAGE = 'es'
+LANGUAGE = 'en'
 LABELS = {
   0 => 'label_loan_amount',
   1 => 'label_loan_term',
@@ -113,14 +113,6 @@ def format_number(number)
   number.to_s.gsub(/(\d)(?=(\d{3})+(?!\d))/, "\\1,")
 end
 
-# def display_results(array, lang='en')
-#   puts
-#   puts messages('results', LANGUAGE)
-#   array.each_with_index do |element, idx|
-#     puts "#{messages(LABELS[idx], LANGUAGE)} = #{format_number(element.round(2))}"
-#   end
-# end
-
 ### Main Program ##########
 
 system "clear"
@@ -144,16 +136,23 @@ loop do
   # Display the results
   puts
   puts messages('results', LANGUAGE)
-  puts "#{messages(LABELS[0], LANGUAGE).ljust(30)} = $#{format_number(loan_amount)}"
-  puts "#{messages(LABELS[1], LANGUAGE).ljust(30)} = #{loan_term} Months"
-  puts "#{messages(LABELS[2], LANGUAGE).ljust(30)} = #{apr} %"
-  puts "#{messages(LABELS[3], LANGUAGE).ljust(30)} = #{monthly_interest_rate.round(4)} %"
-  puts "#{messages(LABELS[4], LANGUAGE).ljust(30)} = $#{format_number(monthly_payment.round(2))}"
-  puts "#{messages(LABELS[5], LANGUAGE).ljust(30)} = $#{format_number(total_payments.round(2))}"
-  puts "#{messages(LABELS[6], LANGUAGE).ljust(30)} = $#{format_number(total_interest.round(2))}"
+  puts "#{messages(LABELS[0], LANGUAGE).ljust(30)} = $#{
+    format_number(loan_amount)}"
+  puts "#{messages(LABELS[1], LANGUAGE).ljust(30)} = #{
+    loan_term}"
+  puts "#{messages(LABELS[2], LANGUAGE).ljust(30)} = #{
+    apr} %"
+  puts "#{messages(LABELS[3], LANGUAGE).ljust(30)} = #{
+    monthly_interest_rate.round(4)} %"
+  puts "#{messages(LABELS[4], LANGUAGE).ljust(30)} = $#{
+    format_number(monthly_payment.round(2))}"
+  puts "#{messages(LABELS[5], LANGUAGE).ljust(30)} = $#{
+    format_number(total_payments.round(2))}"
+  puts "#{messages(LABELS[6], LANGUAGE).ljust(30)} = $#{
+    format_number(total_interest.round(2))}"
+
   puts messages('separator', LANGUAGE)
 
-  # display_results([loan_amount, loan_term, apr, monthly_interest_rate, monthly_payment, total_payments, total_interest], LANGUAGE)
   # Another calculation?
   puts
   answer = get_answer
