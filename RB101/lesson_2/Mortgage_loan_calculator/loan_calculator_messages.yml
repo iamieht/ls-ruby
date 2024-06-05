@@ -11,6 +11,7 @@ en:
   new_calculation: "Would you like to do another calculation? (y/n) "
   valid_answer: "Hmm... that doesn't look like a valid choice. Must choose 'y' or 'n'"
   goodbye: "Thank you for using the Mortage/Loan Calculator!"
+  label_loan_amount: "Loan Amount"
 
 es:
   welcome: "Bienvenido a la calculadora de préstamos hipotecarios!"
@@ -25,3 +26,4 @@ es:
   new_calculation: "¿Desea realizar otro cálculo? (y/n) "
   valid_answer: "Hmm... no parece una opción válida. Debe elegir 'y' o 'n'"
   goodbye: "Gracias por utilizar la calculadora de préstamos hipotecarios!"
+  label_loan_amount: "Importe del Préstamo"
