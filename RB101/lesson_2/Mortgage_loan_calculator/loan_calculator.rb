@@ -5,7 +5,7 @@
 require 'yaml'
 ### Constants ###########
 MESSAGES = YAML.load_file('loan_calculator_messages.yml')
-LANGUAGE = 'en'
+LANGUAGE = 'es'
 
 ### Helper Functions ####
 def messages(message, lang='en')
@@ -102,16 +102,20 @@ def calc_loan(loan_amount, monthly_interest_rate, loan_term)
                     (1 - (1 + monthly_interest_rate)**(-loan_term)))
 end
 
+def format_number(number)
+  number.to_s.gsub(/(\d)(?=(\d{3})+(?!\d))/, "\\1,")
+end
+
 def display_results(loan_amount, loan_term, apr, monthly_interest_rate, monthly_payment, total_payments, total_interest)
   puts
   puts messages('results')
-  puts "Loan Amount               = $#{loan_amount}"
+  puts "Loan Amount               = $#{format_number(loan_amount)}"
   puts "Loan Term                 = #{loan_term} Months"
   puts "Annual Interest Rate      = #{apr} %"
-  puts "Monthly Interest Rate     = #{monthly_interest_rate.round(4)} %"
-  puts "Monthly Payment           = $#{monthly_payment.round(2)}"
-  puts "Total of #{loan_term} Payments     = $#{total_payments.round(2)}"
-  puts "Total Interest            = $#{total_interest.round(2)}"
+  puts "Monthly Interest Rate     = #{monthly_interest_rate} %"
+  puts "Monthly Payment           = $#{format_number(monthly_payment)}"
+  puts "Total of #{loan_term} Payments     = $#{format_number(total_payments)}"
+  puts "Total Interest            = $#{format_number(total_interest)}"
   puts messages('separator')
 end
 
@@ -131,16 +135,18 @@ def main()
     apr = get_interest_rate
 
     # Calculations
-    annual_interest_rate = apr / 100
+    annual_interest_rate  = apr / 100
     monthly_interest_rate = calc_monthly_interest_rate(annual_interest_rate)
+                            .round(4)
     monthly_payment = calc_loan(loan_amount, monthly_interest_rate, loan_term)
-    total_payments = monthly_payment * loan_term
-    total_interest = total_payments - loan_amount
+                      .round(2)
+    total_payments = (monthly_payment * loan_term).round(2)
+    total_interest = (total_payments - loan_amount).round(2)
 
     # Display the results
     display_results(loan_amount, loan_term, apr, monthly_interest_rate, monthly_payment, total_payments, total_interest)
 
-    # refactor
+    # Another calculation?
     puts
     answer = get_answer
 
@@ -156,8 +162,6 @@ def main()
 end
 
 main
-
-#"10000".gsub(/(\d)(?=(\d{3})+(?!\d))/, "\\1,")
 
 
 
