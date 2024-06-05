@@ -47,6 +47,19 @@ def get_loan_term()
   end
 end
 
+def get_answer()
+  loop do
+    answer = user_input('new_calculation')
+
+    if valid_answer?(answer)
+      return answer
+    else
+      prompt('valid_answer')
+    end
+  end
+
+end
+
 def get_interest_rate()
   loop do
     interest_rate = user_input('interest_rate')
@@ -79,11 +92,29 @@ def interest_rate?(interest_rate)
   interest_rate.to_f > 0 && interest_rate.to_f <= 100
 end
 
+def valid_answer?(answer)
+  !answer.empty? && (answer.downcase == 'y' || answer.downcase == 'n')
+end
+
 def calc_loan(loan_amount, monthly_interest_rate, loan_term)
   monthly_payment = loan_amount *
                     (monthly_interest_rate /
                     (1 - (1 + monthly_interest_rate)**(-loan_term)))
 end
+
+def display_results(loan_amount, loan_term, apr, monthly_interest_rate, monthly_payment, total_payments, total_interest)
+  puts
+  puts messages('results')
+  puts "Loan Amount               = $#{loan_amount}"
+  puts "Loan Term                 = #{loan_term} Months"
+  puts "Annual Interest Rate      = #{apr} %"
+  puts "Monthly Interest Rate     = #{monthly_interest_rate.round(4)} %"
+  puts "Monthly Payment           = $#{monthly_payment.round(2)}"
+  puts "Total of #{loan_term} Payments     = $#{total_payments.round(2)}"
+  puts "Total Interest            = $#{total_interest.round(2)}"
+  puts messages('separator')
+end
+
 
 ### Main Program ##########
 def main()
@@ -106,20 +137,12 @@ def main()
     total_payments = monthly_payment * loan_term
     total_interest = total_payments - loan_amount
 
-    # display results (move to a method)
-    puts
-    puts messages('results')
-    puts "Loan Amount           = $#{loan_amount}"
-    puts "Loan Term             = #{loan_term} Months"
-    puts "Interest Rate         = #{apr}%"
-    puts "Monthly Interest Rate = #{monthly_interest_rate}%"
-    puts "Monthly Payment       = $#{monthly_payment.round(2)}"
-    puts "Total of #{loan_term} Payments = $#{total_payments.round(2)}"
-    puts "Total Interest        = $#{total_interest.round(2)}"
+    # Display the results
+    display_results(loan_amount, loan_term, apr, monthly_interest_rate, monthly_payment, total_payments, total_interest)
 
     # refactor
-    puts 'Would you like to do another calculation? (y/n)'
-    answer = gets.chomp
+    puts
+    answer = get_answer
 
     if answer == 'n'
       break
@@ -128,9 +151,11 @@ def main()
 
   end
 
-  puts "Thanks for using the Mortage/Loan Calculator"
+  prompt('goodbye')
 
 end
 
 main
+
+
 
