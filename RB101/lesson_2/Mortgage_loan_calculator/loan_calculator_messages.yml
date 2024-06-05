@@ -11,3 +11,17 @@ en:
   new_calculation: "Would you like to do another calculation? (y/n) "
   valid_answer: "Hmm... that doesn't look like a valid choice. Must choose 'y' or 'n'"
   goodbye: "Thank you for using the Mortage/Loan Calculator!"
+
+es:
+  welcome: "Bienvenido a la calculadora de préstamos hipotecarios!"
+  loan_amount: "Por favor, introduzca el Importe del Préstamo: $"
+  loan_term: "¿Cuál es el plazo del préstamo en meses?: "
+  interest_rate: "Por favor, Introduzca el porcentaje de interés (i.e 5 ó 2.5): "
+  valid_number: "Hmm... eso no parece un número válido"
+  valid_month: "Hmm ... eso no parece un número válido de meses"
+  valid_interest_rate: "Hmm... el porcentaje de interés debe ser un número > 0 y <= 100"
+  separator: "-------------------------------------------------------"
+  results: "--------------- RESULTADOS ----------------"
+  new_calculation: "¿Desea realizar otro cálculo? (y/n) "
+  valid_answer: "Hmm... no parece una opción válida. Debe elegir 'y' o 'n'"
+  goodbye: "Gracias por utilizar la calculadora de préstamos hipotecarios!"
