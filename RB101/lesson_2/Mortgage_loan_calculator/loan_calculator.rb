@@ -20,10 +20,10 @@ end
 def user_input(key)
   message = messages(key, LANGUAGE)
   print "=> #{message}"
-  input = gets.chomp
+  gets.chomp
 end
 
-def get_loan_amount()
+def get_loan_amount
   loop do
     loan_amount = user_input('loan_amount')
 
@@ -35,7 +35,7 @@ def get_loan_amount()
   end
 end
 
-def get_loan_term()
+def get_loan_term
   loop do
     loan_term = user_input('loan_term')
 
@@ -47,7 +47,7 @@ def get_loan_term()
   end
 end
 
-def get_answer()
+def get_answer
   loop do
     answer = user_input('new_calculation')
 
@@ -57,15 +57,14 @@ def get_answer()
       prompt('valid_answer')
     end
   end
-
 end
 
-def get_interest_rate()
+def get_interest_rate
   loop do
     interest_rate = user_input('interest_rate')
 
     if number?(interest_rate) && interest_rate?(interest_rate)
-        return interest_rate.to_f
+      return interest_rate.to_f
     else
       prompt('valid_interest_rate')
     end
@@ -97,71 +96,59 @@ def valid_answer?(answer)
 end
 
 def calc_loan(loan_amount, monthly_interest_rate, loan_term)
-  monthly_payment = loan_amount *
-                    (monthly_interest_rate /
-                    (1 - (1 + monthly_interest_rate)**(-loan_term)))
+  loan_amount * (monthly_interest_rate /
+                (1 - ((1 + monthly_interest_rate)**(-loan_term))))
 end
 
 def format_number(number)
   number.to_s.gsub(/(\d)(?=(\d{3})+(?!\d))/, "\\1,")
 end
 
-def display_results(loan_amount, loan_term, apr, monthly_interest_rate, monthly_payment, total_payments, total_interest)
+### Main Program ##########
+
+system "clear"
+prompt('welcome')
+prompt('separator')
+puts
+
+loop do
+  # User Input
+  loan_amount = get_loan_amount
+  loan_term = get_loan_term
+  apr = get_interest_rate
+
+  # Calculations
+  annual_interest_rate  = apr / 100
+  monthly_interest_rate = calc_monthly_interest_rate(annual_interest_rate)
+  monthly_payment = calc_loan(loan_amount, monthly_interest_rate, loan_term)
+  total_payments = (monthly_payment * loan_term)
+  total_interest = (total_payments - loan_amount)
+
+  # Display the results
   puts
-  puts messages('results')
-  puts "Loan Amount               = $#{format_number(loan_amount)}"
+  puts messages('results', LANGUAGE)
+  puts "#{messages('label_loan_amount', LANGUAGE)}      = $#{
+    format_number(loan_amount)}"
   puts "Loan Term                 = #{loan_term} Months"
   puts "Annual Interest Rate      = #{apr} %"
-  puts "Monthly Interest Rate     = #{monthly_interest_rate} %"
-  puts "Monthly Payment           = $#{format_number(monthly_payment)}"
-  puts "Total of #{loan_term} Payments     = $#{format_number(total_payments)}"
-  puts "Total Interest            = $#{format_number(total_interest)}"
+  puts "Monthly Interest Rate     = #{monthly_interest_rate.round(4)} %"
+  puts "Monthly Payment           = $#{format_number(
+    monthly_payment.round(2)
+  )}"
+  puts "Total of #{loan_term} Payments     = $#{format_number(
+    total_payments.round(2)
+  )}"
+  puts "Total Interest            = $#{format_number(total_interest.round(2))}"
   puts messages('separator')
-end
 
-
-### Main Program ##########
-def main()
-  system "clear"
-  prompt('welcome')
-  prompt('separator')
+  # Another calculation?
   puts
+  answer = get_answer
 
-  loop do
-
-    # User Input
-    loan_amount = get_loan_amount
-    loan_term = get_loan_term
-    apr = get_interest_rate
-
-    # Calculations
-    annual_interest_rate  = apr / 100
-    monthly_interest_rate = calc_monthly_interest_rate(annual_interest_rate)
-                            .round(4)
-    monthly_payment = calc_loan(loan_amount, monthly_interest_rate, loan_term)
-                      .round(2)
-    total_payments = (monthly_payment * loan_term).round(2)
-    total_interest = (total_payments - loan_amount).round(2)
-
-    # Display the results
-    display_results(loan_amount, loan_term, apr, monthly_interest_rate, monthly_payment, total_payments, total_interest)
-
-    # Another calculation?
-    puts
-    answer = get_answer
-
-    if answer == 'n'
-      break
-    end
-    system "clear"
-
+  if answer == 'n'
+    break
   end
-
-  prompt('goodbye')
-
+  system "clear"
 end
 
-main
-
-
-
+prompt('goodbye')
