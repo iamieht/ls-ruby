@@ -113,6 +113,12 @@ def format_number(number)
   number.to_s.gsub(/(\d)(?=(\d{3})+(?!\d))/, "\\1,")
 end
 
+def year_2_months(loan_term)
+  years = loan_term.to_i
+  months = loan_term.split(".")[1].to_i
+  (years * 12) + months
+end
+
 ### Main Program ##########
 
 system "clear"
