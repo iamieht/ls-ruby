@@ -1,7 +1,7 @@
 en:
   welcome: "Welcome to the Mortgage/Loan Calculator!"
   loan_amount: "Please introduce the Loan Amount (e.g. 100000): $"
-  loan_term: "What is the Loan Term in Months (e.g. 120): "
+  loan_term: "What is the Loan Term in Years/Months? (e.g. 10.6 = 10 Years 6 Months): "
   interest_rate: "Please introduce the Interest Rate in % (e.g. 5 or 2.5): "
   valid_number: "Hmm... that doesn't look like a valid positive number"
   valid_month: "Hmm... that doesn't look like a valid number of months"
@@ -22,7 +22,7 @@ en:
 es:
   welcome: "Bienvenido a la calculadora de préstamos hipotecarios!"
   loan_amount: "Por favor, introduzca el Importe del Préstamo (e.g. 100000): $"
-  loan_term: "¿Cuál es el plazo del préstamo en meses? (e.g. 120): "
+  loan_term: "¿Cuál es el plazo del préstamo en años/meses? (e.g. 10.6 = 10 años 6 meses): "
   interest_rate: "Por favor, Introduzca el porcentaje de interés (e.g. 5 ó 2.5): "
   valid_number: "Hmm... eso no parece un número válido"
   valid_month: "Hmm ... eso no parece un número válido de meses"
