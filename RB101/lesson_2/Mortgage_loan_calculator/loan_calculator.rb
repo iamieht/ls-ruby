@@ -48,8 +48,8 @@ def get_loan_term
   loop do
     loan_term = user_input('loan_term')
 
-    if integer?(loan_term)
-      return loan_term.to_i
+    if number?(loan_term)
+      return year_2_months(loan_term)
     else
       prompt('valid_month')
     end
@@ -89,7 +89,8 @@ def integer?(number)
 end
 
 def float?(number)
-  (number.to_f.to_s == number) && number.to_f > 0
+  # (number.to_f.to_s == number) && number.to_f > 0
+  (number.to_f.is_a? Numeric) && number.to_f > 0
 end
 
 def number?(number)
