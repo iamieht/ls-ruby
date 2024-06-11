@@ -6,6 +6,7 @@ require 'yaml'
 ### Constants ###########
 MESSAGES = YAML.load_file('loan_calculator_messages.yml')
 LANGUAGE = 'en'
+MONTHS_IN_YEAR = 12
 LABELS = {
   0 => 'label_loan_amount',
   1 => 'label_loan_term',
@@ -81,7 +82,7 @@ def get_interest_rate
 end
 
 def calc_monthly_interest_rate(apr)
-  apr / 12
+  apr / MONTHS_IN_YEAR
 end
 
 def integer?(number)
@@ -119,7 +120,7 @@ end
 def year_2_months(loan_term)
   years = loan_term.to_i
   months = loan_term.split(".")[1].to_i
-  (years * 12) + months
+  (years * MONTHS_IN_YEAR) + months
 end
 
 def another_calculation?(answer)
