@@ -122,6 +122,10 @@ def year_2_months(loan_term)
   (years * 12) + months
 end
 
+def another_calculation?(answer)
+  answer == 'y' || answer == 'yes'
+end
+
 ### Main Program ##########
 
 system "clear"
@@ -166,9 +170,7 @@ loop do
   puts
   answer = get_answer
 
-  if answer == 'n'
-    break
-  end
+  break if !another_calculation?(answer)
   system "clear"
 end
 
