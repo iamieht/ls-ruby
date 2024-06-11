@@ -7,15 +7,6 @@ require 'yaml'
 MESSAGES = YAML.load_file('loan_calculator_messages.yml')
 LANGUAGE = 'en'
 MONTHS_IN_YEAR = 12
-LABELS = {
-  0 => 'label_loan_amount',
-  1 => 'label_loan_term',
-  2 => 'label_apr',
-  3 => 'label_mpr',
-  4 => 'label_m_payment',
-  5 => 'label_t_payments',
-  6 => 'label_interests'
-}
 
 ### Helper Functions ####
 def messages(message, lang='en')
@@ -90,7 +81,6 @@ def integer?(number)
 end
 
 def float?(number)
-  # (number.to_f.to_s == number) && number.to_f > 0
   (number.to_f.is_a? Numeric) && number.to_f > 0
 end
 
@@ -105,7 +95,6 @@ end
 def valid_answer?(answer)
   valid_answers = ['y', 'yes', 'n', 'no']
   !answer.empty? && valid_answers.include?(answer.downcase)
-  # !answer.empty? && (answer.downcase == 'y' || answer.downcase == 'n')
 end
 
 def calc_loan(loan_amount, monthly_interest_rate, loan_term)
@@ -134,34 +123,21 @@ end
 def display_summary(loan_obj)
   puts
   puts messages('results', LANGUAGE)
-  # puts "#{messages(LABELS[0], LANGUAGE).ljust(30)} = $#{
-  #   format_number(loan_amount)}"
-  # puts "#{messages(LABELS[1], LANGUAGE).ljust(30)} = #{
-  #   loan_term}"
-  # puts "#{messages(LABELS[2], LANGUAGE).ljust(30)} = #{
-  #   apr} %"
-  # puts "#{messages(LABELS[3], LANGUAGE).ljust(30)} = #{
-  #   monthly_interest_rate.round(4)} %"
-  # puts "#{messages(LABELS[4], LANGUAGE).ljust(30)} = $#{
-  #   format_number(monthly_payment.round(2))}"
-  # puts "#{messages(LABELS[5], LANGUAGE).ljust(30)} = $#{
-  #   format_number(total_payments.round(2))}"
-  # puts "#{messages(LABELS[6], LANGUAGE).ljust(30)} = $#{
-  #   format_number(total_interest.round(2))}"
+
   puts "#{messages('label_loan_amount', LANGUAGE).ljust(30)} = $#{
-    format_number(loan_obj[loan_amount])}"
+    format_number(loan_obj[:loan_amount])}"
   puts "#{messages('label_loan_term', LANGUAGE).ljust(30)} = #{
-    loan_obj[loan_term]}"
+    loan_obj[:loan_term]}"
   puts "#{messages('label_apr', LANGUAGE).ljust(30)} = #{
-    loan_obj[apr]} %"
+    loan_obj[:apr]} %"
   puts "#{messages('label_mpr', LANGUAGE).ljust(30)} = #{
-    loan_obj[monthly_interest_rate].round(4)} %"
+    loan_obj[:monthly_interest_rate].round(4)} %"
   puts "#{messages('label_m_payment', LANGUAGE).ljust(30)} = #{
-    format_number(loan_obj[monthly_payment].round(2))}"
+    format_number(loan_obj[:monthly_payment].round(2))}"
   puts "#{messages('label_t_payments', LANGUAGE).ljust(30)} = #{
-    format_number(loan_obj[total_payments].round(2))}"
+    format_number(loan_obj[:total_payments].round(2))}"
   puts "#{messages('label_interests', LANGUAGE).ljust(30)} = #{
-    format_number(loan_obj[total_interest].round(2))}"
+    format_number(loan_obj[:total_interest].round(2))}"
 
   puts messages('separator', LANGUAGE)
 end
@@ -174,38 +150,41 @@ prompt('separator')
 puts
 
 loop do
-  loan_obj = nil
+  # Initialize loan object
+  loan_obj = {
+    loan_amount: nil,
+    loan_term: nil,
+    apr: nil,
+    monthly_interest_rate: nil,
+    monthly_payment: nil,
+    total_payments: nil,
+    total_interest: nil
+  }
   # User Input
   loan_amount = get_loan_amount
-  loan_term = get_loan_term
-  apr = get_interest_rate
+  loan_term   = get_loan_term
+  apr         = get_interest_rate
 
   # Calculations
   annual_interest_rate  = apr / 100
   monthly_interest_rate = calc_monthly_interest_rate(annual_interest_rate)
-  monthly_payment = calc_loan(loan_amount, monthly_interest_rate, loan_term)
-  total_payments = (monthly_payment * loan_term)
-  total_interest = (total_payments - loan_amount)
+  monthly_payment       = calc_loan(
+    loan_amount, monthly_interest_rate, loan_term
+  )
+  total_payments        = (monthly_payment * loan_term)
+  total_interest        = (total_payments - loan_amount)
+
+  # Build loan object
+  loan_obj[:loan_amount]            = loan_amount
+  loan_obj[:loan_term]              = loan_term
+  loan_obj[:apr]                    = apr
+  loan_obj[:monthly_interest_rate]  = monthly_interest_rate
+  loan_obj[:monthly_payment]        = monthly_payment
+  loan_obj[:total_payments]         = total_payments
+  loan_obj[:total_interest]         = total_interest
 
   # Display the results
-  puts
-  puts messages('results', LANGUAGE)
-  puts "#{messages(LABELS[0], LANGUAGE).ljust(30)} = $#{
-    format_number(loan_amount)}"
-  puts "#{messages(LABELS[1], LANGUAGE).ljust(30)} = #{
-    loan_term}"
-  puts "#{messages(LABELS[2], LANGUAGE).ljust(30)} = #{
-    apr} %"
-  puts "#{messages(LABELS[3], LANGUAGE).ljust(30)} = #{
-    monthly_interest_rate.round(4)} %"
-  puts "#{messages(LABELS[4], LANGUAGE).ljust(30)} = $#{
-    format_number(monthly_payment.round(2))}"
-  puts "#{messages(LABELS[5], LANGUAGE).ljust(30)} = $#{
-    format_number(total_payments.round(2))}"
-  puts "#{messages(LABELS[6], LANGUAGE).ljust(30)} = $#{
-    format_number(total_interest.round(2))}"
-
-  puts messages('separator', LANGUAGE)
+  display_summary(loan_obj)
 
   # Another calculation?
   puts
