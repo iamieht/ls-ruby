@@ -126,9 +126,13 @@ def another_calculation?(answer)
   answer == 'y' || answer == 'yes'
 end
 
+def clear
+  system "clear"
+end
+
 ### Main Program ##########
 
-system "clear"
+clear
 prompt('welcome')
 prompt('separator')
 puts
@@ -171,7 +175,7 @@ loop do
   answer = get_answer
 
   break if !another_calculation?(answer)
-  system "clear"
+  clear
 end
 
 prompt('goodbye')
