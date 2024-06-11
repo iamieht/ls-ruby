@@ -131,6 +131,41 @@ def clear
   system "clear"
 end
 
+def display_summary(loan_obj)
+  puts
+  puts messages('results', LANGUAGE)
+  # puts "#{messages(LABELS[0], LANGUAGE).ljust(30)} = $#{
+  #   format_number(loan_amount)}"
+  # puts "#{messages(LABELS[1], LANGUAGE).ljust(30)} = #{
+  #   loan_term}"
+  # puts "#{messages(LABELS[2], LANGUAGE).ljust(30)} = #{
+  #   apr} %"
+  # puts "#{messages(LABELS[3], LANGUAGE).ljust(30)} = #{
+  #   monthly_interest_rate.round(4)} %"
+  # puts "#{messages(LABELS[4], LANGUAGE).ljust(30)} = $#{
+  #   format_number(monthly_payment.round(2))}"
+  # puts "#{messages(LABELS[5], LANGUAGE).ljust(30)} = $#{
+  #   format_number(total_payments.round(2))}"
+  # puts "#{messages(LABELS[6], LANGUAGE).ljust(30)} = $#{
+  #   format_number(total_interest.round(2))}"
+  puts "#{messages('label_loan_amount', LANGUAGE).ljust(30)} = $#{
+    format_number(loan_obj[loan_amount])}"
+  puts "#{messages('label_loan_term', LANGUAGE).ljust(30)} = #{
+    loan_obj[loan_term]}"
+  puts "#{messages('label_apr', LANGUAGE).ljust(30)} = #{
+    loan_obj[apr]} %"
+  puts "#{messages('label_mpr', LANGUAGE).ljust(30)} = #{
+    loan_obj[monthly_interest_rate].round(4)} %"
+  puts "#{messages('label_m_payment', LANGUAGE).ljust(30)} = #{
+    format_number(loan_obj[monthly_payment].round(2))}"
+  puts "#{messages('label_t_payments', LANGUAGE).ljust(30)} = #{
+    format_number(loan_obj[total_payments].round(2))}"
+  puts "#{messages('label_interests', LANGUAGE).ljust(30)} = #{
+    format_number(loan_obj[total_interest].round(2))}"
+
+  puts messages('separator', LANGUAGE)
+end
+
 ### Main Program ##########
 
 clear
@@ -139,6 +174,7 @@ prompt('separator')
 puts
 
 loop do
+  loan_obj = nil
   # User Input
   loan_amount = get_loan_amount
   loan_term = get_loan_term
