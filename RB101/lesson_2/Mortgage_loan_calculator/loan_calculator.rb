@@ -102,7 +102,9 @@ def interest_rate?(interest_rate)
 end
 
 def valid_answer?(answer)
-  !answer.empty? && (answer.downcase == 'y' || answer.downcase == 'n')
+  valid_answers = ['y', 'yes', 'n', 'no']
+  !answer.empty? && valid_answers.include?(answer.downcase)
+  # !answer.empty? && (answer.downcase == 'y' || answer.downcase == 'n')
 end
 
 def calc_loan(loan_amount, monthly_interest_rate, loan_term)
