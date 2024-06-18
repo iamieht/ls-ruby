@@ -64,12 +64,12 @@ end
 
 def choice_to_name(choice)
   case choice
-  when 'r' then 'Rock'
-  when 'p' then 'Paper'
-  when 's' then 'Scissors'
-  when 'l' then 'Lizard'
-  when 'sp' then 'Spock'
-  else choice.capitalize
+  when 'r' then 'rock'
+  when 'p' then 'paper'
+  when 's' then 'scissors'
+  when 'l' then 'lizard'
+  when 'sp' then 'spock'
+  else choice
   end
 end
 
@@ -91,6 +91,19 @@ def win?(first, second)
   RULES.fetch(first).include?(second)
 end
 
+def display_result(player, computer)
+  player = choice_to_name(player)
+  computer = choice_to_name(computer)
+
+  if win?(player, computer)
+    prompt("player_wins")
+  elsif win?(computer, player)
+    prompt("pc_wins")
+  else
+    prompt("tie")
+  end
+end
+
 def play_again?
 end
 
@@ -106,9 +119,10 @@ def rpsls
   computer_choice = get_computer_choice
 
   display_choices(player_choice, computer_choice)
+  display_result(player_choice, computer_choice)
 end
 
-#rpsls
+rpsls
 
 
 # def win?(first, second)
@@ -117,15 +131,7 @@ end
 #     (first == 'scissors' && second == 'paper')
 # end
 
-# def display_result(player, computer)
-#   if win?(player, computer)
-#     prompt("You won!")
-#   elsif win?(computer, player)
-#     prompt("Computer won!")
-#   else
-#     prompt("It's a tie!")
-#   end
-# end
+
 
 # loop do
 #   choice = ''
@@ -160,5 +166,5 @@ end
 # get_player_choice
 # p VALID_CHOICES
 # puts valid_choice?('')
-puts win?('lizard', 'rock')
+#puts win?('lizard', 'rock')
 
