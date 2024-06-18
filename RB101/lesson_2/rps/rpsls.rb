@@ -13,6 +13,14 @@ RULES = {
   spock: ['rock', 'scissors'],
   lizard: ['spock', 'paper']
 }
+VALID_CHOICES = [
+  'r', 'rock',
+  'p', 'paper',
+  's', 'scissors',
+  'l', 'lizard',
+  'sp', 'spock'
+]
+
 
 # Helper Functions
 def message(lang, msg)
@@ -24,16 +32,32 @@ def prompt(msg)
   puts "=> #{message}"
 end
 
+def user_input(msg)
+  message = message(LANG, msg)
+  puts "=> #{message}"
+  gets.chomp
+end
+
 def display_rules
 end
 
 def get_player_choice
+  loop do
+    choice = user_input('hand')
+
+    if valid_choice?(choice)
+      return choice
+    else
+      prompt('valid_choice')
+    end
+  end
 end
 
 def get_computer_choice
 end
 
-def valid_choice?
+def valid_choice?(choice)
+  VALID_CHOICES.include?(choice)
 end
 
 def get_score
@@ -51,6 +75,11 @@ end
 def play_again?
 end
 
+def clear
+  system "clear"
+end
+
+# Main Game logic
 def rpsls
 end
 
@@ -101,4 +130,7 @@ end
 # puts RULES[:rock][0]
 # puts message(LANG, 'welcome')
 # prompt('welcome')
+# get_player_choice
+# p VALID_CHOICES
+# puts valid_choice?('')
 
