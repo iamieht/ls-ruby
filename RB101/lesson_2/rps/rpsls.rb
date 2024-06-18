@@ -122,7 +122,7 @@ def rpsls
   loop do
     scores = init_scores
     loop do
-      break if scores[:player] == 3 || scores[:computer] == 3
+      break if scores[:player] == WINS || scores[:computer] == WINS
       display_score(scores)
 
       player_choice = get_player_choice
