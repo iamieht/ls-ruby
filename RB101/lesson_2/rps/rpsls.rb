@@ -13,14 +13,15 @@ RULES = {
   spock: ['rock', 'scissors'],
   lizard: ['spock', 'paper']
 }
-VALID_CHOICES = [
-  'r', 'rock',
-  'p', 'paper',
-  's', 'scissors',
-  'l', 'lizard',
-  'sp', 'spock'
-]
-
+# VALID_CHOICES = [
+#   'r', 'rock',
+#   'p', 'paper',
+#   's', 'scissors',
+#   'l', 'lizard',
+#   'sp', 'spock'
+# ]
+VALID_CHOICES = ['rock', 'paper', 'scissors', 'lizard', 'spock']
+VALID_SHORT_CUTS = ['r', 'p', 's', 'l', 'sp']
 
 # Helper Functions
 def message(lang, msg)
@@ -35,7 +36,7 @@ end
 def user_input(msg)
   message = message(LANG, msg)
   puts "=> #{message}"
-  gets.chomp
+  gets.chomp.downcase
 end
 
 def display_rules
@@ -54,10 +55,11 @@ def get_player_choice
 end
 
 def get_computer_choice
+  VALID_CHOICES.sample
 end
 
 def valid_choice?(choice)
-  VALID_CHOICES.include?(choice)
+  VALID_CHOICES.include?(choice) || VALID_SHORT_CUTS.include?(choice)
 end
 
 def get_score
