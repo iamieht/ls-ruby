@@ -1,2 +1,4 @@
 en:
   welcome:  "Welcome to Rock, Paper, Scissors, Lizard, Spock!"
+  hand: "Choose your hand: (r)ock, (p)aper, (s)cissors, (l)izard, (sp)ock"
+  valid_choice: "Hmm... That's not a valid choice!, Please try again"
