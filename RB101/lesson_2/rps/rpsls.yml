@@ -4,4 +4,6 @@ en:
   valid_choice: "Hmm... That's not a valid choice!, Please try again"
   player_wins: "You won!"
   pc_wins: "Computer won!"
-  tie: "It's a tie!"  
+  tie: "It's a tie!"
+  final_score: "Final Score: "
+  play_again: "Do you want to play again? "
