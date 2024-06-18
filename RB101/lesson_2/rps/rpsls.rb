@@ -24,6 +24,36 @@ def prompt(msg)
   puts "=> #{message}"
 end
 
+def display_rules
+end
+
+def get_player_choice
+end
+
+def get_computer_choice
+end
+
+def valid_choice?
+end
+
+def get_score
+end
+
+def update_score
+end
+
+def display_score
+end
+
+def win?
+end
+
+def play_again?
+end
+
+def rpsls
+end
+
 
 # def win?(first, second)
 #   (first == 'rock' && second == 'scissors') ||
@@ -68,7 +98,7 @@ end
 # prompt("Thank you for playing. Good bye!")
 
 # Unit Tests
-puts RULES[:rock][0]
-puts message(LANG, 'welcome')
-prompt('welcome')
+# puts RULES[:rock][0]
+# puts message(LANG, 'welcome')
+# prompt('welcome')
 
