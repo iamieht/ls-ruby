@@ -83,7 +83,15 @@ end
 
 # Main Game logic
 def rpsls
+  clear
+  prompt('welcome')
+  player_choice = get_player_choice
+  computer_choice = get_computer_choice
+
+  puts "You chose: #{player_choice}; Computer chose: #{computer_choice}"
 end
+
+rpsls
 
 
 # def win?(first, second)
