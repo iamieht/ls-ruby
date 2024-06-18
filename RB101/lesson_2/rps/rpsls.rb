@@ -7,11 +7,11 @@ require 'yaml'
 MESSAGES = YAML.load_file('rpsls.yml')
 LANG = 'en'
 RULES = {
-  rock: ['lizard', 'scissors'],
-  paper: ['spock', 'rock'],
-  scissors: ['paper', 'lizard'],
-  spock: ['rock', 'scissors'],
-  lizard: ['spock', 'paper']
+  'rock' => ['lizard', 'scissors'],
+  'paper' => ['spock', 'rock'],
+  'scissors' => ['paper', 'lizard'],
+  'spock' => ['rock', 'scissors'],
+  'lizard' => ['spock', 'paper']
 }
 # VALID_CHOICES = [
 #   'r', 'rock',
@@ -62,6 +62,22 @@ def valid_choice?(choice)
   VALID_CHOICES.include?(choice) || VALID_SHORT_CUTS.include?(choice)
 end
 
+def choice_to_name(choice)
+  case choice
+  when 'r' then 'Rock'
+  when 'p' then 'Paper'
+  when 's' then 'Scissors'
+  when 'l' then 'Lizard'
+  when 'sp' then 'Spock'
+  else choice.capitalize
+  end
+end
+
+def display_choices(player, computer)
+  puts "You chose: #{choice_to_name(player)}"
+  puts "Computer chose: #{choice_to_name(computer)}"
+end
+
 def get_score
 end
 
@@ -71,7 +87,8 @@ end
 def display_score
 end
 
-def win?
+def win?(first, second)
+  RULES.fetch(first).include?(second)
 end
 
 def play_again?
@@ -88,10 +105,10 @@ def rpsls
   player_choice = get_player_choice
   computer_choice = get_computer_choice
 
-  puts "You chose: #{player_choice}; Computer chose: #{computer_choice}"
+  display_choices(player_choice, computer_choice)
 end
 
-rpsls
+#rpsls
 
 
 # def win?(first, second)
@@ -143,4 +160,5 @@ rpsls
 # get_player_choice
 # p VALID_CHOICES
 # puts valid_choice?('')
+puts win?('lizard', 'rock')
 
