@@ -78,5 +78,7 @@ no
 - Define a method play_again?
 - Define a method win?
     - based on the rules, determine the winner
+- Define a method choice_to_name(choice)
+    - returns the real value in case a short cut is used.
 - Define a main method rpsls
     - main logic
