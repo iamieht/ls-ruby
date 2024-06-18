@@ -19,7 +19,7 @@ Build the game Rock Paper Scissors Lizar Spock
 - Game rules: 1. "Scissors cuts Paper" / "Paper covers Rock" / "Rock crushes Lizard" / "Lizard Poisons Spock" / "Spock smashes Scissors" / "Scissors decapitates Lizard" / "Lizard eats Paper" / "Paper disproves Spock" / "Spock vaporizes Rock" / "Rock crushes Scissors"
 
 ## Examples/Test Cases
-=> Welcome to Rock, Paper, Scissors, Lizard Spock
+=> Welcome to Rock, Paper, Scissors, Lizard, Spock
 
 |------------ Rules ----------------|
 | 1. "Scissors cuts Paper"          |
