@@ -13,15 +13,9 @@ RULES = {
   'spock' => ['rock', 'scissors'],
   'lizard' => ['spock', 'paper']
 }
-# VALID_CHOICES = [
-#   'r', 'rock',
-#   'p', 'paper',
-#   's', 'scissors',
-#   'l', 'lizard',
-#   'sp', 'spock'
-# ]
 VALID_CHOICES = ['rock', 'paper', 'scissors', 'lizard', 'spock']
 VALID_SHORT_CUTS = ['r', 'p', 's', 'l', 'sp']
+WINS = 3
 
 # Helper Functions
 def message(lang, msg)
@@ -78,33 +72,42 @@ def display_choices(player, computer)
   puts "Computer chose: #{choice_to_name(computer)}"
 end
 
-def get_score
+def init_scores
+  scores = {
+    player: 0,
+    computer: 0
+  }
 end
 
-def update_score
+def display_score(scores)
+  puts "Player: #{scores[:player]} / Computer: #{scores[:computer]}"
 end
 
-def display_score
+def increment_score(player, scores)
+  scores[player] += 1
 end
 
 def win?(first, second)
   RULES.fetch(first).include?(second)
 end
 
-def display_result(player, computer)
+def display_result(player, computer, scores)
   player = choice_to_name(player)
   computer = choice_to_name(computer)
 
   if win?(player, computer)
     prompt("player_wins")
+    increment_score(:player, scores)
   elsif win?(computer, player)
     prompt("pc_wins")
+    increment_score(:computer, scores)
   else
     prompt("tie")
   end
 end
 
-def play_again?
+def play_again?(answer)
+  answer == 'y' || answer == 'yes'
 end
 
 def clear
@@ -115,11 +118,27 @@ end
 def rpsls
   clear
   prompt('welcome')
-  player_choice = get_player_choice
-  computer_choice = get_computer_choice
 
-  display_choices(player_choice, computer_choice)
-  display_result(player_choice, computer_choice)
+  loop do
+    scores = init_scores
+    loop do
+      break if scores[:player] == 3 || scores[:computer] == 3
+      display_score(scores)
+
+      player_choice = get_player_choice
+      computer_choice = get_computer_choice
+
+      display_choices(player_choice, computer_choice)
+      display_result(player_choice, computer_choice, scores)
+    end
+    prompt('final_score')
+    display_score(scores)
+
+    #Play Again?
+    puts
+    answer = user_input('play_again')
+    break unless play_again?(answer)
+  end
 end
 
 rpsls
