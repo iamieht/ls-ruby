@@ -34,6 +34,13 @@ def user_input(msg)
 end
 
 def display_rules
+  puts (
+"Scissors cuts Paper covers Rock
+Rock crushes Lizard poisons Spock
+Spock smashes Scissors decapitates Lizard
+Lizard eats Paper disproves Spock
+Spock vaporizes Rock crushes Scissors"
+)
 end
 
 def get_player_choice
@@ -114,10 +121,23 @@ def clear
   system "clear"
 end
 
+def help
+  answer = user_input('rules')
+
+  if valid_help?(answer)
+    display_rules()
+  end
+end
+
+def valid_help?(answer)
+  !answer.empty? && (answer.downcase == 'h' || answer.downcase == 'help')
+end
+
 # Main Game logic
 def rpsls
   clear
   prompt('welcome')
+  help()
 
   loop do
     scores = init_scores
