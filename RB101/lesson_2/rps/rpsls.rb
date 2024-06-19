@@ -34,12 +34,15 @@ def user_input(msg)
 end
 
 def display_rules
+  prompt('round')
   puts (
-"Scissors cuts Paper covers Rock
-Rock crushes Lizard poisons Spock
-Spock smashes Scissors decapitates Lizard
-Lizard eats Paper disproves Spock
-Spock vaporizes Rock crushes Scissors"
+"|---------------------------------------------|
+| Scissors cuts Paper covers Rock             |
+| Rock crushes Lizard poisons Spock           |
+| Spock smashes Scissors decapitates Lizard   |
+| Lizard eats Paper disproves Spock           |
+| Spock vaporizes Rock crushes Scissors       |
+|---------------------------------------------|"
 )
 end
 
@@ -75,8 +78,10 @@ def choice_to_name(choice)
 end
 
 def display_choices(player, computer)
+  puts
   puts "You chose: #{choice_to_name(player)}"
   puts "Computer chose: #{choice_to_name(computer)}"
+  puts
 end
 
 def init_scores
@@ -87,7 +92,8 @@ def init_scores
 end
 
 def display_score(scores)
-  puts "Player: #{scores[:player]} / Computer: #{scores[:computer]}"
+  puts "Score = Player #{scores[:player]} / Computer #{scores[:computer]}"
+  puts
 end
 
 def increment_score(player, scores)
@@ -125,12 +131,21 @@ def help
   answer = user_input('rules')
 
   if valid_help?(answer)
+    clear()
     display_rules()
+    start_game()
+  else
+    clear()
   end
 end
 
 def valid_help?(answer)
   !answer.empty? && (answer.downcase == 'h' || answer.downcase == 'help')
+end
+
+def start_game
+  input = user_input('start_game')
+  clear()
 end
 
 # Main Game logic
@@ -162,48 +177,3 @@ def rpsls
 end
 
 rpsls
-
-
-# def win?(first, second)
-#   (first == 'rock' && second == 'scissors') ||
-#     (first == 'paper' && second == 'rock') ||
-#     (first == 'scissors' && second == 'paper')
-# end
-
-
-
-# loop do
-#   choice = ''
-#   loop do
-#     prompt("Choose one: #{VALID_CHOICES.join(', ')}")
-#     choice = gets.chomp
-
-#     if VALID_CHOICES.include?(choice)
-#       break
-#     else
-#       prompt("That's not a valid choice.")
-#     end
-#   end
-
-#   computer_choice = VALID_CHOICES.sample
-
-#   puts "You chose: #{choice}; Computer chose: #{computer_choice}"
-
-#   display_result(choice, computer_choice)
-
-#   prompt("Do you want to play again?")
-#   answer = gets.chomp
-#   break unless answer.downcase.start_with?('y')
-# end
-
-# prompt("Thank you for playing. Good bye!")
-
-# Unit Tests
-# puts RULES[:rock][0]
-# puts message(LANG, 'welcome')
-# prompt('welcome')
-# get_player_choice
-# p VALID_CHOICES
-# puts valid_choice?('')
-#puts win?('lizard', 'rock')
-
