@@ -92,7 +92,14 @@ def init_scores
 end
 
 def display_score(scores)
+  puts
   puts "Score = Player #{scores[:player]} / Computer #{scores[:computer]}"
+  puts
+end
+
+def final_score(scores)
+  puts
+  puts "Final Score = Player #{scores[:player]} / Computer #{scores[:computer]}"
   puts
 end
 
@@ -119,7 +126,9 @@ def display_result(player, computer, scores)
   end
 end
 
-def play_again?(answer)
+def play_again?
+  puts
+  answer = user_input('play_again')
   answer == 'y' || answer == 'yes'
 end
 
@@ -166,13 +175,11 @@ def rpsls
       display_choices(player_choice, computer_choice)
       display_result(player_choice, computer_choice, scores)
     end
-    prompt('final_score')
-    display_score(scores)
+    final_score(scores)
 
     #Play Again?
-    puts
-    answer = user_input('play_again')
-    break unless play_again?(answer)
+    break unless play_again?
+    clear()
   end
 end
 
