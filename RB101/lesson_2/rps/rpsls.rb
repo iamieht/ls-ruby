@@ -35,15 +35,13 @@ end
 
 def display_rules
   prompt('round')
-  puts (
-"|---------------------------------------------|
+  puts("|---------------------------------------------|
 | Scissors cuts Paper covers Rock             |
 | Rock crushes Lizard poisons Spock           |
 | Spock smashes Scissors decapitates Lizard   |
 | Lizard eats Paper disproves Spock           |
 | Spock vaporizes Rock crushes Scissors       |
-|---------------------------------------------|"
-)
+|---------------------------------------------|")
 end
 
 def get_player_choice
@@ -85,7 +83,7 @@ def display_choices(player, computer)
 end
 
 def init_scores
-  scores = {
+  {
     player: 0,
     computer: 0
   }
@@ -153,13 +151,13 @@ def valid_help?(answer)
 end
 
 def start_game
-  input = user_input('start_game')
+  user_input('start_game')
   clear()
 end
 
 # Main Game logic
 def rpsls
-  clear
+  clear()
   prompt('welcome')
   help()
 
@@ -177,7 +175,7 @@ def rpsls
     end
     final_score(scores)
 
-    #Play Again?
+    # Play Again?
     break unless play_again?
     clear()
   end
