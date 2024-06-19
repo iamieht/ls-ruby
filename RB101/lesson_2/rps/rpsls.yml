@@ -1,6 +1,7 @@
 en:
   welcome:  "Welcome to Rock, Paper, Scissors, Lizard, Spock!"
-  rules: "Type (h)elp to see the rules or any key to start playing: "
+  rules: "Type (h)elp to see the rules or press any key to start playing... "
+  round: "The first who wins 3 rounds is the final winner!"
   hand: "Choose your hand: (r)ock, (p)aper, (s)cissors, (l)izard, (sp)ock"
   valid_choice: "Hmm... That's not a valid choice!, Please try again"
   player_wins: "You won!"
@@ -8,3 +9,7 @@ en:
   tie: "It's a tie!"
   final_score: "Final Score: "
   play_again: "Do you want to play again? "
+  start_game: "Press any key to start playing..."
+  score: "Current Score: "
+  player: "Player: "
+  computer: "Computer: "
