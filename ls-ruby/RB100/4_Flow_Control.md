@@ -224,3 +224,5 @@ irb :006 > 'foo' && 3 # last evaluated operand is 3
 is_ok = !!(foo || bar)
 ```
 - The expression `!!a` is equivalent to writing `!(!a)`. The inner `!` converts the value of `a` to `false` if it is truthy, or `true` if `a` is falsy. The outer `!` then flips `true` to `false` or `false` to `true`. In the end, we end up with a boolean value instead of a truthiness value
+
+https://docs.ruby-lang.org/en/3.2/syntax/control_expressions_rdoc.html
