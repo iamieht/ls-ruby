@@ -65,10 +65,16 @@ a = 10
 ## nil
 
 - express "nothing" 
+- A variable with a value of `nil` could be described as having 'nothing' or being 'completely empty', or even just simply 'not any specific type'.
 - literal `nil`
 - To check if something is of type `nil` use the literal `.nil?`
 - `nil` is **falsy** 
 
+```shell
+irb :001 > puts "Hello, World!" 
+Hello, World! 
+=> nil
+```
 ## Operations
 
 ### Adding, Subtracting, and Multiplying Integers
@@ -81,6 +87,7 @@ a = 10
 
 - `16 / 4` => 4 (When dividing integers an integer is returned)
 - `16 % 5` => 1 (Only with positive integers)
+- In modulo expressions, the value to the left of the `%` is called the **dividend**, and the value to the right is called the **modulus**.
 
 ### Modulo vs. Remainder
 
@@ -145,7 +152,7 @@ irb :006 > 'hi there 4'.to_f
 - an **expression** is anything that can be evaluated and almost everything in Ruby is an expression.
 - An **expression** in Ruby always returns something (even an error or `nil`)
 
-## puts vs return
+## [[puts vs return]]
 
 - The `puts` method prints something to the screen and returns `nil`
 - **Expressions** do something and **return** something. The value returned is not necessarily the action that was performed.
