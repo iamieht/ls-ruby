@@ -138,7 +138,7 @@ puts animal
 puts var
 ```
 
-### Example 3
+### Example 3 (Clarify with TA)
 ```ruby
 n = 101.times do |n|  
     n = 11
