@@ -145,6 +145,8 @@ n = 101.times do |n| 
 end
 puts n
 ```
+they are demonstrating that the top level/main `n` variable is never accessed within the `times` block because the block variable `n` blocks access to that outer variable, due to variable shadowing.
+So during each iteration, when `n` is assigned to `11`, that is only affecting the block variable `n`, not the top level/main `n` variable. As you said, the top level/main `n` is initialized and assigned the return value of the `times` method after its block execution is completed.
 
 ### Example 4
 ```ruby
