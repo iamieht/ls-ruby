@@ -110,8 +110,6 @@ puts animal
 puts var
 ```
 
-
-
 ## Variable Shadowing
 
 ### Example 1
@@ -140,7 +138,24 @@ puts animal
 puts var
 ```
 
+### Example 3
+```ruby
+n = 101.times do |n|  
+    n = 11
+end
+puts n
+```
+
+### Example 4
+```ruby
+animal = "dog"
+loop do |animal|  
+    animal = "cat"  
+    break
+end
+puts animal
+```
 
 
-# 08.07.2024 (Mariah)
+
 
