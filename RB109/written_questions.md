@@ -393,3 +393,95 @@ add_name(names, 'jim')
 puts names
 ```
 
+## Each, Map, Select
+
+### Example 1
+```ruby
+array = [1, 2, 3, 4, 5]
+array.select do |num|   
+    puts num if num.odd?
+end
+```
+
+### Example 2
+```ruby
+arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+arr.select { |n| n.odd? }
+```
+
+### Example 3
+```ruby
+arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+new_array = arr.select do |n|   
+    n + 1
+end
+p new_array
+```
+
+### Example 4
+```ruby
+arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+new_array = arr.select do |n|   
+    n + 1  
+    puts n
+end
+p new_array
+```
+
+### Example 5
+```ruby
+words = %w(jump trip laugh run talk)
+new_array = words.map do |word|  
+    word.start_with?("t")
+end
+p new_array
+```
+
+### Example 6
+
+```ruby
+arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+arr.each { |n| puts n }
+```
+
+### Example 7
+```ruby
+arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+incremented = arr.map do |n|             
+    n + 1
+end
+p incremented
+```
+
+### Example 8
+```ruby
+arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+new_array = arr.map do |n|   
+    n > 1
+end
+p new_array
+```
+
+### Example 9
+```ruby
+arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+new_array = arr.map do |n|   
+    n > 1  puts n
+end
+p new_array
+```
+
+### Example 10
+```ruby
+a = "hello"
+[1, 2, 3].map { |num| a }
+```
+
+### Example 11
+```ruby
+[1, 2, 3].each do |num|  
+    puts num
+end
+```
+
+
