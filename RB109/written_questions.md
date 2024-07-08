@@ -544,6 +544,32 @@ p odd
 p even
 ```
 
+## Truthiness
+
+### Example 1
+```ruby
+a = "Hello"
+if a  
+    puts "Hello is truthy"
+else  
+    puts "Hello is falsey"
+end
+```
+
+### Example 2
+```ruby
+def test  
+    puts "written assessment"
+end
+
+var = test
+if var  
+    puts "written assessment"
+else  
+    puts "interview"
+end
+
+
 
 
 
