@@ -27,7 +27,7 @@ This code outputs:
 
 In this code snippet, variable shadowing is demonstrated, as the block parameter `number` shadows the local variable `number` initialized in the outer scope.
 
-**Variable Shadowing** is a mechanism in which a variable initialized in an outer scope cannot be accessed within a block, because a variable with a similar name is used within the block and 'shadows' the one in the outer scope.
+**Variable Shadowing** is a mechanism that comes into play when we have a block that is passed to a method invocation as an argument with a parameter that has the same name as a local variable in the outer scope, preventing access to the outer scope variable.
 
 #### More examples
 
@@ -44,7 +44,7 @@ puts a
 puts b
 ```
 
-##### Example 2
+##### Example 2 (No variable shadowing according to me)
 
 ```ruby
 animal = "dog"
