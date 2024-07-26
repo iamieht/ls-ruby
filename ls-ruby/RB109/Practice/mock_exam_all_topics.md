@@ -2,9 +2,165 @@
 
 ## Variables as Pointers
 
+Explain the concept of "Variables as Pointers". As part of your explanation, include a code snippet that accurately demonstrates this concept, and explain the effect it has within that example.
+
+### Answers
+
+```ruby
+a = 'mango'
+b = a
+a = 'kiwi'
+puts a	#=> 'kiwi'
+puts b	#=> 'mango'
+```
+
+On line 1, the local variable `a` is assigned to the string `mango`. On line 2, the local variable `b` is assigned to the value referenced by local variable `a`. Therefore `b` is assigned to `mango`. On line 3, `a` is reassigned to the string `kiwi`. On lines 3 and 4, the `puts` method is invoked and gets passed in the values referenced by local variables `a` and `b`, respectively. Since `a` references `kiwi` and `b` references `mango`, that is what is output.
+
+This code snippet demonstrates, variables as pointers, since variables are references to physical address in memory that stores values and are not deeply linked to each other.
+
+**Variables** are labels that references or points to physical address in memory that store values.
+
+#### More Examples
+
+##### Example 1
+
+```ruby
+a = "hi there"
+b = a
+a = "not here"
+```
+
+##### Example 2
+
+```ruby
+a = "hi there"
+b = a
+a << ", Bob"
+```
+
+##### Example 3
+
+```ruby
+a = [1, 2, 3, 3]
+b = a
+c = a.uniq
+```
+
+##### Example 4
+
+```ruby
+def test(b)
+  b.map { |letter| "I like the letter: #{letter}" }
+end
+
+a = ['a', 'b', 'c']
+test(a)
+```
+
+##### Example 5
+
+```ruby
+a = 5.2
+b = 7.3
+a = b
+b += 1.1
+puts a
+puts b
+```
+
+##### Example 6
+
+```ruby
+def test(str)
+  str  += '!'
+  str.downcase!
+end
+
+test_str = 'Written Assessment'
+test(test_str)
+
+puts test_str
+```
+
+##### Example 7
+
+```ruby
+def plus(x, y)
+  x = x + y
+end
+
+a = 3
+b = plus(a, 2)
+
+puts a
+puts b
+```
+
+##### Example 8
+
+```ruby
+def increment(x)
+  x << 'b'
+end
+
+y = 'a'
+
+increment(y)
+puts y
+```
+
+##### Example 9
+
+```ruby
+def change_name(name) 
+   name = 'bob'      # does this reassignment change the object outside the method?
+end
+
+name = 'jim'
+change_name(name)
+
+puts name
+```
+
+##### Example 10
+
+```ruby
+def cap(str) 
+    str.capitalize!   # does this affect the object outside the method?
+end
+
+name = "jim"
+cap(name)
+puts name
+```
+
+##### Example 11
+
+```ruby
+a = [1, 3]
+b = [2]
+arr = [a, b]
+arra[1] = 5
+
+arr
+```
+
+##### Example 12
+
+```ruby
+arr1 = ["a", "b", "c"]
+arr2 = arr1.dup
+
+arr2.map! do |char| 
+    char.upcase
+end
+
+puts arr1
+puts arr2
+```
 ## Variable Shadowing
 
-In your own words, explain the concept of "Variables Shadowing". As part of your explanation, include a code snippet that accurately demonstrates this concept, and explain the effect it has within that example.
+Explain the concept of "Variables Shadowing". As part of your explanation, include a code snippet that accurately demonstrates this concept, and explain the effect it has within that example.
 
 ### Answer
 
