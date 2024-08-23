@@ -241,6 +241,53 @@ puts n
 
 ## Scope of constants
 
+Constants have *lexical scope*x
+### Rule 1: Constants can be accessed by methods
+
+```ruby
+USERNAME = 'Batman'
+
+def authenticate
+	puts "Logging in #{USERNAME}"
+end
+
+authenticate # => Logging in Batman
+```
+
+### Rule 2: Constants can be accessed by method invocation with a block
+
+In this case it behaves exactly like a local variable.
+
+```ruby
+FAVORITE_COLOR = 'taupe'
+
+1.times do
+	puts "I love #{FAVORITE_COLOR}!" # => I love taupe!
+end
+```
+
+### Rule 3: Constants initialized in an inner scope can be accessed in the outer scope
+
+```ruby
+loop do
+	MY_TEAM = "Phoenix Suns"
+	break
+end
+
+puts MY_TEAM # => Phoenix Suns
+```
+
+### Rule 4: Constants cannot be initialized in method definitions
+
+```ruby
+def amethod
+	CONSTANT = "I am a constant"
+	puts CONSTANT
+end
+
+amethod #=> Error: dynamic constant assignment
+```
+
 ## Mutating values vs. reassigning values
 
 ## Method definition vs. method invocation
@@ -261,4 +308,4 @@ puts n
 
 ## Pass-by-reference vs. pass-by-value
 
-## Truthiness
+## Truthiness (Wednesday Session 31.07)
