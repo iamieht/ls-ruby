@@ -50,3 +50,19 @@ puts hello
 a. Why the output of this code is `hi` and not `Saying Hello`?
 b. Without changing the local variables name, what can be done to output `Saying Hello` instead? 
 
+# 4.1
+```ruby
+def amethod(param)
+	param += " universe"
+	param << " world"
+end
+
+str = "hello"
+amethod(str)
+
+p str
+```
+a. What is the output of this code? Why?
+b. What would be the output if line `param += " universe"` is removed? Why?
+c. What concepts are demonstrated in both cases?
+
