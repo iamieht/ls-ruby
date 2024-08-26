@@ -1,6 +1,7 @@
 # 1. Uppercase Check
 
-# 1. Truthiness
+# Truthiness
+## 1 
 ```ruby
 def test  
     puts "written assessment"
@@ -13,8 +14,8 @@ else 
     puts "interview"
 end
 ```
-
-# 2. Collection methods
+# Collection methods
+## 1 
 ```ruby
 odd, even = [1, 2, 3].partition do |num|  
     num.odd?
@@ -22,8 +23,8 @@ end
 p odd 
 p even
 ```
-
-# 3. Variables as Pointers
+# Variables as Pointers
+## 1 
 ```ruby
 a = 4
 b = a
@@ -35,6 +36,24 @@ puts b
 a. What concept is demonstrated here?
 b. What is the output of `puts b` and `puts a`? Why?
 c. On line 1 and 2, are `a` and `b` referencing the same object in memory? Why? 
+
+## 2
+```ruby
+a = "forty two"
+b = "forty two"
+c = a
+```
+a. What are `a`, `b` and `c`? Why?
+
+## 3
+```ruby
+a = 42
+b = 42
+c = a
+```
+
+a. What are `a`, `b` and `c`? Why?
+
 
 # 4. Variable Scope and Method Definitions
 ```ruby
