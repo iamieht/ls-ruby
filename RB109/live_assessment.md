@@ -54,6 +54,16 @@ c = a
 
 a. What are `a`, `b` and `c`? Why?
 
+## 4
+```ruby
+x = 'a'
+y = 'b'
+z = [x, y]
+y = 2
+p z
+```
+a. What is the output? Why?
+
 
 # 4. Variable Scope and Method Definitions
 ```ruby
