@@ -72,3 +72,16 @@ p odd
 p even
 ```
 
+# 7. Variables as Pointers
+```ruby
+a = 4
+b = a
+a = 7
+puts a
+puts b
+```
+
+a. What concept is demonstrated here?
+b. What is the output of `puts b` and `puts a`? Why?
+c. On line 1 and 2, are `a` and `b` referencing the same object in memory? Why? 
+
