@@ -237,6 +237,70 @@ puts n
 
 ## Local variable scope in relation to method definitions
 
+### Example 1
+
+- What will the following code print and why?
+
+```ruby
+a = 7
+
+def my_value(b)
+	b += 10
+end
+
+my_value(a)
+puts a
+```
+
+The code prints `7`.
+
+Reassignment does not mutate a variable, instead it binds the variable to a new object. Since line 4, binds `b` to a new object, the object pointed to by `a` remains unchanged. Thus, when passing `a` to the `puts` method as an argument, `7` is output in the console.
+
+On the other hand, Numbers are immutable in Ruby. So there is not way to mutate the value referenced by `b`, which means that the method `my_value` can not change the object referenced by `a`.
+
+### Example 2
+
+- What will the following code print and why?
+
+```ruby
+a = 7
+
+def my_value(a)
+  a += 10
+end
+
+my_value(a)
+puts a
+```
+
+The code output `7`.
+
+On line 7, the method `my_value` is invoked and gets passed the value referenced by local variable `a`, which is 7, as it was initialized on line 1. 
+
+Within the method, the value referenced by variable `a` is bound to the method local variable `a` and reassigned to the value `10` and returned. The returned value is not used. 
+On line 8, the `puts` method is invoked and gets passed the value referenced by local variable `a`, which is `7` and is output into the console.
+
+The concept demonstrated here is local variable scope in relation with method definitions, meaning that as methods have a self-contained scope, the method has no access to local variables initialized outside method definitions.
+
+### Example 3
+
+- What will the following code print and why?
+
+```ruby
+a = "Xyzzy"
+
+def my_value(b)
+  b[2] = '-'
+end
+
+my_value(a)
+puts a
+```
+
+The code prints `Xy-zx`.
+
+Within the method `my_value` the method `String#[]`is invoked on the String value referenced by method local variable `b`, and as Strings are mutable in Ruby, the element in index 2 `z` is replaced by the character `-`, changing the value referenced by local variables `a` and `b`. This result on the value `Xy-zy` which is output by the invocation of the `puts` method on line 8. 
+
 ## Local variable scope in relation to blocks
 
 ## Scope of constants
