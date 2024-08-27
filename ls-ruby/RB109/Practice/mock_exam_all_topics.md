@@ -297,9 +297,11 @@ my_value(a)
 puts a
 ```
 
-The code prints `Xy-zx`.
+This code prints `Xy-zy`.
 
-Within the method `my_value` the method `String#[]`is invoked on the String value referenced by method local variable `b`, and as Strings are mutable in Ruby, the element in index 2 `z` is replaced by the character `-`, changing the value referenced by local variables `a` and `b`. This result on the value `Xy-zy` which is output by the invocation of the `puts` method on line 8. 
+Within the method `my_value` the method `String#[]=`is invoked on the String value referenced by method local variable `b`, and as Strings are mutable in Ruby, the element in index 2, `z`, is replaced by the character `-`, changing the value referenced by local variables `a` and `b`. This results in the string being modified to `Xy-zy` which is output by the invocation of the `puts` method on line 8. 
+
+Overall, your explanation demonstrates a good understanding of how strings are passed to methods in Ruby and how they can be modified within those methods. **The core concepts of object mutability and variable references** are well addressed in your explanation.
 
 ## Local variable scope in relation to blocks
 
