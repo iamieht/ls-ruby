@@ -31,10 +31,21 @@ end)
 
 #### Bonus Question ####
 # What assumptions did you have to make in order to write this function?
+- Only English alphabetical characters are valid, anything else is invalid (ex. Any other type rather than Strings)
+- Uppercase characters are supported as well
+- Only single characters are allowed 
 
-def charvalue(char)
+```ruby
+def get_char_value(char)
+  valid_chars = 'abcdefghijklmnopqrstuvwxyz'
 
+  return nil if !char.instance_of?(String) ||
+                !valid_chars.include?(char.to_s.downcase) ||
+                char.length > 1
+
+  valid_chars.index(char.downcase) + 1
 end
+```
 
 
 
