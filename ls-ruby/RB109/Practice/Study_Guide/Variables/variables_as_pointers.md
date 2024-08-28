@@ -264,11 +264,17 @@ str.upcase!   # Mutates str
 
 5.  For immutable objects (like integers or symbols), operations that seem to modify the object actually create a new object, and reassign the variable to point to this new object.
 
-In Ruby, numbers and symbols behave differently from other objects when it comes to references:Numbers and symbols are immutable in Ruby. This means that when you perform operations on them, you're actually creating new objects rather than modifying existing ones.For numbers:•   Each integer in Ruby is a single, immutable object. For example, there's only one integer object for the number 5.  
-•   When you assign a number to a variable, the variable references this single, immutable object.  
-•   Any operation on a number returns a new number object.For symbols:•   Symbols are also immutable.  
-•   Each unique symbol exists only once in Ruby's symbol table.  
-•   When you use a symbol, you're always referencing the same object.This behavior is different from mutable objects like arrays or hashes, where multiple variables can reference the same object and modifications affect all references.
+In Ruby, numbers and symbols behave differently from other objects when it comes to references: Numbers and symbols are immutable in Ruby. This means that when you perform operations on them, you're actually creating new objects rather than modifying existing ones. 
+
+**For numbers:**
+* Each integer in Ruby is a single, immutable object. For example, there's only one integer object for the number 5.  
+* When you assign a number to a variable, the variable references this single, immutable object.  
+* Any operation on a number returns a new number object.
+
+**For symbols:**
+* Symbols are also immutable.
+* Each unique symbol exists only once in Ruby's symbol table.
+* When you use a symbol, you're always referencing the same object.This behavior is different from mutable objects like arrays or hashes, where multiple variables can reference the same object and modifications affect all references.
 
 For example:
 
