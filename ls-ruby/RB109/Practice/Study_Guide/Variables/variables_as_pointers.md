@@ -1,0 +1,265 @@
+# Variables as Pointers
+
+A variable doesn't contain **a value**, instead it **contains a pointer to a physical space in memory** that contains the **value**. 
+
+## Examples
+
+### Case 1
+
+```ruby
+a = "hi there"
+b = a
+a = "not here"
+```
+
+![[Pasted image 20240625075004.png]]
+
+The code `a = "not here"` reassigned the variable `a` to a different address in memory, so pointing to a new string. That is what the `=` operator does.
+
+```ruby
+puts "The variable a == #{a} with Object Id: #{a.object_id}"
+puts "The variable b == #{b} with Object Id: #{b.object_id}"
+```
+
+```shell
+The variable a == not there with Object Id: 60
+The variable b == hi there with Object Id: 80
+```
+
+[[25.important_methods#`object_id`| object_id]] 
+
+### Case 2
+
+```ruby
+a = "hi there"
+b = a
+a << ", Bob"
+```
+
+![[Pasted image 20240625081632.png]]
+
+The code `a << ", Bob` did not reassigned `a` to a new string. Instead, it mutated the caller and modified the existing string, which is also pointed to by the variable `b`. 
+
+**Important**: some operations mutate the address space, while others make the variable point to a different address space. Pay attention to whether the variables are pointing to the same object (address space) or if they are dealing with copies that occupy different address spaces.
+
+This behavior applies to variables that points to arrays, hashes, or any data structure that has methods that mutates the caller or one or more of its arguments.
+
+[[25.important_methods#`<<`| <<]]
+
+### Case 3
+
+```ruby
+a = [1, 2, 3, 3]
+b = a
+c = a.uniq
+
+puts "a = #{a} Object id: #{a.object_id}"
+puts "b = #{b} Object id: #{b.object_id}"
+puts "c = #{c} Object id: #{c.object_id}"
+```
+
+What are `a`, `b` and `c`? 
+
+```shell
+a = [1, 2, 3, 3] Object id: 60
+b = [1, 2, 3, 3] Object id: 60
+c = [1, 2, 3] Object id: 80
+```
+
+What if the last line was `c = a.uniq!`?
+
+`uniq!` is a destructive method, meaning it mutates the caller. In this case the object referenced by the 3 variables is the same.
+
+```ruby
+a = [1, 2, 3, 3]
+b = a
+c = a.uniq!
+
+puts "a = #{a} Object id: #{a.object_id}"
+puts "b = #{b} Object id: #{b.object_id}"
+puts "c = #{c} Object id: #{c.object_id}"
+```
+
+```shell
+a = [1, 2, 3] Object id: 60
+b = [1, 2, 3] Object id: 60
+c = [1, 2, 3] Object id: 60
+```
+
+[[25.important_methods#`uniq`|uniq]] 
+### Case 4
+
+```ruby
+def test(b)
+	b.map {|letter| "I like the letter: #{letter}"}
+end
+
+a = ['a', 'b', 'c']
+test(a)
+```
+
+What is `a` after the `test` method returns? Did the method modify the value of `a`? Suppose we called `map!` instead of `map` from within `test`. Would that have any effect on the value of `a`?
+
+```shell
+a = ["a", "b", "c"]
+```
+
+`a` is not modified because the value of the original variable is assigned to the variable `b` inside the method `test` and since there are no operations that mutates the original value of `a` inside the method, the object referenced by `a` remains the same.
+
+```ruby
+def test(b)
+	b.map! {|letter| "I like the letter: #{letter}"}
+end
+
+a = ['a', 'b', 'c']
+test(a)
+```
+
+```shell
+["I like the letter: a", "I like the letter: b", "I like the letter: c"]
+```
+
+The `map!` method mutates the caller, so the value referenced by the object `a` is mutated within the method `test`. 
+
+**Important**: when we use variables to pass arguments to a method, we are assigning the value of the original variable (`a`) to a variable inside the method (`b`), which is equivalent to executing `b = a`. Inside the method, the operations we perform on the `b` variable determine whether the value of `b` will change. Some operations mutate the caller, some operations create new objects.
+
+[[25.important_methods#`map`|map]]
+
+### Case 5
+
+```ruby
+a = "forty two"
+b = "forty two"
+c = a
+
+puts a.object_id
+puts b.object_id
+puts c.object_id
+```
+
+```shell
+60
+80
+60
+```
+
+`a` and `b` reference different objects. `a` and `c` reference the same object. This is because `c` was initialized to the object referenced by `a`. 
+
+### Case 6
+
+```ruby
+a = 42
+b = 42
+c = a
+
+puts a.object_id
+puts b.object_id 
+puts c.object_id
+```
+
+```shell
+85
+85
+85
+```
+
+Since the object referenced by `a` and `b` are immutable, the same physical address in memory is reused. In the case of `c`, it was initialized to the object referenced by `a`, so the 3 variables point to the same object in memory.
+
+Note that for performance reasons, `true`, `false` and `nil` are also handled specially (eg, every instance of `true` will all have the same object id). This also has to do with the immutability of `true`, `false` and `nil`.
+
+### Case 7
+
+```ruby
+greetings = { a: 'hi' }
+informal_greeting = greetings[:a]
+informal_greeting << ' there'
+
+puts informal_greeting  #  => "hi there"
+puts greetings
+```
+
+```shell
+hi there
+{:a=>"hi there"}
+```
+
+`informal_greeting` is a reference to the original object. The line `informal_greeting << ' there'` was using the `String#<<` method, which modifies the object that called it. The original object was changed, impacting the value of `greeting`. 
+
+If we wanted to modify only `informal_greeting` without affecting `greeting`, we could:
+
+```ruby
+informal_greeting = greetings[:a].clone
+```
+Here we initialized `informal_greeting` with a reference to a new object containing the same value
+
+or
+```ruby
+informal_greeting = informal_greeting + ' there'
+```
+Here we use string concatenation, which returns a new `String` object instead of modifying the original object.
+
+### Case 8
+
+```ruby
+x = 'a'
+y = 'b'
+z = [x, y]
+y = 2
+
+p z #=> ['a', 'b']
+```
+
+The reassignment of `y` is not affecting `z` .
+
+
+Variables as Pointers and Mutability: https://www.youtube.com/watch?v=PnWhlKRORIo
+
+## Summary
+
+1.  Variables in Ruby don't actually contain values. Instead, they contain references (or pointers) to objects in memory.
+
+2.  When you assign a value to a variable, you're actually making that variable point to the object in memory.
+
+3.  When you assign one variable to another, both variables end up pointing to the same object.
+
+```ruby
+arr1 = [1, 2, 3]
+arr2 = arr1
+
+arr2 << 4
+
+puts arr1.inspect  # Output: [1, 2, 3, 4]
+puts arr2.inspect  # Output: [1, 2, 3, 4]
+```
+
+**In this example:**
+1.  We create an array `arr1` with values `[1, 2, 3]`.  
+2.  We assign `arr1` to `arr2`. Now both `arr1` and `arr2` are pointing to the same array object in memory.  
+3.  We modify `arr2` by appending `4` to it.  
+4.  When we inspect both `arr1` and `arr2`, we see that they both contain `[1, 2, 3, 4]`.This happens because arrays in Ruby are mutable objects. When we assign `arr1` to `arr2`, we're not creating a new array, but rather making `arr2` point to the same array object that `arr1` is pointing to. As a result, any changes made to the array through either variable will be reflected when accessing the array through the other variable.
+
+4.  For mutable objects (like arrays or hashes), operations that mutate the object will affect all variables pointing to that object.
+
+In Ruby, some operations that will mutate an object include:
+1.  Array methods like push, pop, shift, unshift, <<, insert, delete_at, etc.
+2.  Hash methods like store, delete, clear, etc.
+3.  String methods ending with ! like upcase!, downcase!, capitalize!, etc.
+4.  Object methods that change the object's state directly.
+5.  Assigning new values to array elements or hash keys.
+
+For example:
+
+```ruby
+arr = [1, 2, 3]
+arr.push(4)  # Mutates arr
+arr[0] = 0   # Mutates arr
+
+hash = {a: 1, b: 2}
+hash[:c] = 3  # Mutates hash
+
+str = "hello"
+str.upcase!   # Mutates str
+```
+
+
+5.  For immutable objects (like integers or symbols), operations that seem to modify the object actually create a new object, and reassign the variable to point to this new object.
