@@ -31,3 +31,22 @@ The `mutate` method performed a destructive action (i.e., `pop`) on its argum
 
 [Mutating and Non-mutating methods](https://launchschool.medium.com/ruby-objects-mutating-and-non-mutating-methods-78023d849a5f)
 
+Certain methods in Ruby can modify the original object they're called on or the objects passed as arguments. Let's break it down:
+
+1.  **"Mutates the caller"**: This means the method changes the object it's called on. For example, if you have an array and call a method that adds an element to it, the original array is modified.
+2.  **"Mutates the arguments"**: This means the method changes the objects passed to it as arguments.
+3. **"Change the value in that object's address space"**: This refers to modifying the actual object in memory, rather than creating a new object.
+
+Here's an example to illustrate:
+
+```ruby
+def add_exclamation(str)
+  str << "!"
+end
+
+original = "Hello"
+add_exclamation(original)
+puts original  # Outputs: "Hello!"
+```
+
+In this case, `add_exclamation` mutates its argument `str` by appending "!" to it. This changes the original string object, rather than creating a new string. It's important to be aware of which methods mutate objects and which don't, as this affects how variables reference objects and can lead to unexpected behavior if not carefully considered.
