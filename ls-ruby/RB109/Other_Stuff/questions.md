@@ -103,14 +103,6 @@ result = true && 5 && "hello"
 puts result  # Outputs: "hello"
 ```
 
-### 6. What is the return value of the following expression and why?
-
-```ruby
- "hello" && 0 && nil
-```
-
-Here, all values are truthy, so `&&` returns the last value, which is "hello".
-
 This behavior allows for concise conditional checks, such as:
 
 ```ruby
@@ -123,6 +115,13 @@ end
 ```
 
 In this case, if `user_name` is `nil`, the `&&` will short-circuit and not attempt to call `length` on `nil`, avoiding a potential error.
+### 6. What is the return value of the following expression and why?
+
+```ruby
+ "hello" && 0 && nil
+```
+
+The return value is `nil` as is the first falsy value in the expression. The `&&` operator returns the first falsy value if there's one, otherwise returns the last truthy operand in the expression.
 
 ### 7. How does Ruby's `if` statement evaluate truthiness differently from the `==` operator?
 
