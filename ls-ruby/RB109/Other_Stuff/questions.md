@@ -252,6 +252,12 @@ c = 15
 puts a < b && b < c || a > c
 ```
 
+```ruby
+puts true && true || false
+puts true
+```
+
+Comparison operators have higher precedence than logical operators in Ruby, so first the comparison expressions get evaluated and then the `&&` operator has higher order precedence than `||` operator.
 
 ### 6.  Explain how precedence affects the result of this expression:
 
@@ -259,6 +265,7 @@ puts a < b && b < c || a > c
 result = 1 + 2 * 3 ** 2 - 4 / 2
 ```
 
+The `**` operator has higher order of precedence, so the operands `3` and `2` get passed to this operator, returning the value `9`. As operators `*` and `/` have the same precedence the expression gets evaluated left to right, so the operands `2` and `9` get passed to the `*` operator returning the value `18`. Then the operands `4` and `2` get passed to the `/` operator returning the value `2`. The final expression `1 + 18 - 2` is evaluated left to right, returning the value `17`.
 
 ### 7.  What is the output of this code? Explain the precedence of method calls and operators.
 
