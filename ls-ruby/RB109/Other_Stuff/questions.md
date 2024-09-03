@@ -277,7 +277,7 @@ end
 puts 5 + multiply(2, 3) ** 2
 ```
 
-
+The first step is to have all the operands as values, before Ruby evaluates the operators. So the method invocation `multiply` is evaluated first, returning the value `6`. Then the operands `6` and `2` gets passed to the `**` operator, returning the value `36`. Finally the operands `5` and `36` get passed to the `+` operator returning the value `41`, which is then passed as an argument to the `puts` method invocation, outputting the value to the console.
 
 
 
