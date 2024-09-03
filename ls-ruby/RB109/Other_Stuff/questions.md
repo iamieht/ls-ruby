@@ -235,6 +235,13 @@ On line 2, the expression `3 + 4` gets evaluated, returning the value `7` and is
 puts true && false || true && !false
 ```
 
+`&&` has higher order of precedence than `||`, so the expression is evaluated as follows:
+
+```ruby
+puts false || true
+puts true
+```
+
 
 ### 5.  What will this code output and why?
 
