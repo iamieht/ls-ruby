@@ -193,4 +193,74 @@ The difference between `if x = 1` and `if x == 1` in Ruby is significant:
 The expression `if x = 1` is an assignment operation that always evaluates a true, while the expression `if x == 1` is a comparison operation that checks for equality and returns the Boolean `true` or the Boolean `false` depending on the value of `x`. So the second expression can produce a truthy or falsy value, depending on the value referenced by variable `x`, while the first expression will always produce a truthy value, as every assignment operation returns the value referenced by the assignment.
 
 
+## Precedence
+
+### 1. What is the output of the following code and why?
+
+```ruby
+puts (5 + 3) * 2 == 16 && !(32 * 4 == 128 || 16 > 0)
+```
+
+Answer
+
+```ruby
+puts 8 * 2 == 16 && !(true)
+puts true && false
+puts false
+```
+
+The parentheses have the higher order of precedence in Ruby, so it's evaluated first. In that case `(5 + 3)` is evaluated to `8` and `(32 * 4 == 128 || 16 > 0)` is evaluated to `!(true).` The expression `8 * 2` is evaluated to `16` and `!(true)` is evaluated to `false`. Then the comparison `16 == 16` gets evaluated and returns `true` and the last remaining expression is `true && false` that gets evaluated to `false`, which is then passed as an argument to the `puts` method invocation, outputting `false` to the console.
+### 2. Explain the order of operations in this expression:
+
+```ruby
+result = 10 - 5 * 2 + 15 / 3 ** 2
+```
+
+Operands `3` and `2` gets passed to the `**` operator, returning the value `9`. Then the operands `5` and `2` gets passed to the `*` operator, returning the value `10`. The operands `15` and `9` gets passed to the `/` operator, returning the value `1`. Then the rest of the expression is evaluated letf-to-right `10 - 10 + 1` returning the value `1` 
+### 3. What is the value of `x` after this code executes? Explain the precedence rules at play.
+
+```ruby
+x = 2 
+x *= 3 + 4
+```
+
+
+### 4. Describe the precedence of logical operators in this statement:
+
+```ruby
+puts true && false || true && !false
+```
+
+
+### 5.  What will this code output and why?
+
+```ruby
+a = 5
+b = 10
+c = 15
+puts a < b && b < c || a > c
+```
+
+
+### 6.  Explain how precedence affects the result of this expression:
+
+```ruby
+result = 1 + 2 * 3 ** 2 - 4 / 2
+```
+
+
+### 7.  What is the output of this code? Explain the precedence of method calls and operators.
+
+```ruby
+def multiply(a, b)
+    a * b
+end
+
+puts 5 + multiply(2, 3) ** 2
+```
+
+
+
+
+
 
