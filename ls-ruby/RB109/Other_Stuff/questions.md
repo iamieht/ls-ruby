@@ -224,6 +224,10 @@ x = 2
 x *= 3 + 4
 ```
 
+`x = 14`
+
+On line 1, local variable `x` is initialized and references the Integer object with value `2`.
+On line 2, the expression `3 + 4` gets evaluated, returning the value `7` and is passed as an argument to the method `*` returning the value 14, which is then reassigned to the local variable `x`.
 
 ### 4. Describe the precedence of logical operators in this statement:
 
