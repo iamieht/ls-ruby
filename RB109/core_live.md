@@ -229,3 +229,20 @@ p turn_on_lights?(lights_on) # yes /true
 
 lights_on = true # lights are on
 p turn_on_lights?(lights_on) # no /false
+
+
+## 
+def print
+  puts "Hi"
+end
+
+a = 1 && print() # nil
+b = 0 || 3 # 0
+
+result = if a > b
+           a
+         else
+           b
+         end
+
+puts result
