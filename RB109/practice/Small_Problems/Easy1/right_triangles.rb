@@ -11,34 +11,69 @@ def triangle(n)
   end
 end
 
+def draw_triangle_up(num, angle)
+  if angle == 'right'
+    num.times do |i|
+      stars = i + 1
+      spaces = num - 1
+      num -= 1
 
-# def trianglev2(num, orientation="up", angle="right")
-#   if orientation == "up"
-#     case angle
-#     when 'right':
-#       num.times do |idx|
-#         stars = idx + 1
-#         spaces = n - 1
-#         num -= 1
+      puts "#{ ' ' * spaces }#{ '*' * stars }"
+    end
+  elsif angle == 'left'
+    num.times do |i|
+      stars = i + 1
+      spaces = num - 1
+      num -= 1
 
-#         puts "#{ ' ' * spaces }#{ '*' * stars }"
-#       end
-#     when 'left':
-#       num.times do |idx|
+      puts "#{ '*' * stars }#{ ' ' * spaces }"
+    end
+  else
+    puts "Incorrect Angle"
+  end
+end
 
-# end
+def draw_triangle_down(num, angle)
+  if angle == 'right'
+    num.downto(1) do |i|
+      stars = i
+      spaces = num - i
+
+      puts "#{ ' ' * spaces }#{ '*' * stars }"
+    end
+  elsif angle == 'left'
+    num.downto(1) do |i|
+      stars = i
+      spaces = num - i
+
+      puts "#{ '*' * stars }#{ ' ' * spaces }"
+    end
+  else
+    puts "Incorrect Angle"
+  end
+end
+
+def triangle_v2(num, angle, orientation="up")
+  if orientation == "up"
+    draw_triangle_up(num, angle)
+  elsif orientation == "down"
+    draw_triangle_down(num, angle)
+  else
+    puts "Incorrect Orientation"
+  end
+end
 
 
 
 # Examples
-triangle(5)
+# triangle(5)
 #     *
 #    **
 #   ***
 #  ****
 # *****
 
-triangle(9)
+# triangle(9)
 #         *
 #        **
 #       ***
@@ -48,3 +83,14 @@ triangle(9)
 #   *******
 #  ********
 # *********
+
+# draw_triangle(5, "right")
+# draw_triangle(5, "left")
+
+# draw_triangle_down(5, 'right')
+# draw_triangle_down(5, 'left')
+
+# triangle_v2(5, "right", "up")
+# triangle_v2(5, "left", "up")
+# triangle_v2(5, "right", "down")
+# triangle_v2(5, "left", "down")
