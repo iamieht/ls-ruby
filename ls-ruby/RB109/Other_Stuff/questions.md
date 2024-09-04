@@ -356,6 +356,28 @@ puts name
 
 ### 18. How can you return a local variable from a method to make it accessible in the outer scope?
 
+## Variable Shadowing
+
+### 1. What is variable shadowing in Ruby?
+
+### 2. In what situations does variable shadowing occur?
+
+### 3. How does variable shadowing affect the accessibility of outer scope variables within a block?
+
+### 4. Write a code snippet that demonstrates variable shadowing using the `each` method.
+
+### 5. How can you avoid variable shadowing when writing Ruby code?
+
+### 6. What's the difference between variable shadowing and variable reassignment?
+
+### 7. How does variable shadowing impact debugging and code readability?
+
+### 8. Write a code snippet that shows how to access an outer scope variable inside a block where variable shadowing occurs.
+
+### 9. Can variable shadowing occur with method parameters? Why or why not?
+
+### 10. How does understanding variable shadowing contribute to writing more maintainable Ruby code?
+
 
 
 
