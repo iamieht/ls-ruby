@@ -7,7 +7,6 @@
 
 2.  What is the difference between puts and return in Ruby? Provide an example.
 3.  Describe the concept of pass-by-reference vs. pass-by-value in Ruby. How does it apply to different data types?
-4.  What is variable shadowing in Ruby? When might it occur, and how can it be avoided?
 6.  How do Ruby's `Array#map` and `Array#select` methods differ? Provide examples of when you might use each.
 7.  What is the difference between `==` and `===` in Ruby? When would you use each?
 8.  Describe the concept of mutating vs. non-mutating methods in Ruby. Provide examples of each.
@@ -356,6 +355,30 @@ puts name
 
 ### 18. How can you return a local variable from a method to make it accessible in the outer scope?
 
+### 19. How does variable scope differ between method definitions and blocks?
+
+### 20. Can a block access variables defined in its outer scope? If yes, provide an example.
+
+### 21. What happens when you initialize a variable inside a block? Can you access it outside the block?
+
+### 22. Explain the concept of variable shadowing in the context of blocks. When might this occur?
+
+### 23. How do nested blocks handle variable scope? Can an inner block access variables from an outer block?
+
+### 24. What happens to a variable's value if it's modified inside a block?
+
+### 25. Do peer blocks (blocks at the same level) share scope with each other? Explain with an example.
+
+### 26. How does variable scope work when using block parameters that have the same name as outer scope variables?
+
+### 27. Can you initialize a variable in an inner block and access it in an outer block? Why or why not?
+
+### 28. What's the difference in variable scope between using `each` and `loop` to create a block?
+
+### 29. How does variable scope work with methods that take blocks as arguments?
+
+### 30. What happens if you try to use a variable before it's initialized within a block?
+
 ## Variable Shadowing
 
 ### 1. What is variable shadowing in Ruby?
@@ -377,6 +400,7 @@ puts name
 ### 9. Can variable shadowing occur with method parameters? Why or why not?
 
 ### 10. How does understanding variable shadowing contribute to writing more maintainable Ruby code?
+
 
 
 
