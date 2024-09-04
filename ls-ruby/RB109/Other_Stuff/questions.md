@@ -4,11 +4,10 @@
 
 ## Open-ended questions
 
-1.  Explain the concept of variable scope in Ruby. How does it differ between methods and blocks?
+
 2.  What is the difference between puts and return in Ruby? Provide an example.
 3.  Describe the concept of pass-by-reference vs. pass-by-value in Ruby. How does it apply to different data types?
 4.  What is variable shadowing in Ruby? When might it occur, and how can it be avoided?
-5.  Explain the concept of truthiness in Ruby. What values are considered falsy?
 6.  How do Ruby's `Array#map` and `Array#select` methods differ? Provide examples of when you might use each.
 7.  What is the difference between `==` and `===` in Ruby? When would you use each?
 8.  Describe the concept of mutating vs. non-mutating methods in Ruby. Provide examples of each.
@@ -278,6 +277,66 @@ puts 5 + multiply(2, 3) ** 2
 ```
 
 The first step is to have all the operands as values, before Ruby evaluates the operators. So the method invocation `multiply` is evaluated first, returning the value `6`. Then the operands `6` and `2` gets passed to the `**` operator, returning the value `36`. Finally the operands `5` and `36` get passed to the `+` operator returning the value `41`, which is then passed as an argument to the `puts` method invocation, outputting the value to the console.
+
+## Variable Scope
+
+### 1. How does variable scope differ between methods and blocks in Ruby?
+
+### 2. What will the following code output and why?
+
+```ruby
+x = 10
+5.times do |x|
+    puts x
+end
+puts x
+```
+
+### 3. What is the output of this code and why?
+
+```ruby
+a = 5
+3.times do |n|
+    a = 3
+    b = 5
+end
+puts a
+puts b
+```
+
+
+### 4. Explain how variable initialization in an inner scope affects the outer scope.
+
+
+### 5. What will this code output and why?
+
+```ruby
+arr = [1, 2, 3]
+for i in arr do
+    a = 5
+end
+puts a
+```
+
+
+### 6. How does variable scope work with method definitions in Ruby?
+
+
+### 7. What is the result of running this code and why?
+
+```ruby
+def change_name(name)
+    name = 'bob'
+end
+
+name = 'jim'
+change_name(name)
+puts name
+```
+
+### 8. Explain the concept of variable scope in Ruby. How does it differ between methods and blocks?
+
+
 
 
 
