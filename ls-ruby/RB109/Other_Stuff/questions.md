@@ -336,6 +336,27 @@ puts name
 
 ### 8. Explain the concept of variable scope in Ruby. How does it differ between methods and blocks?
 
+### 9. What happens if you try to access a local variable inside a method that was defined outside the method?
+
+### 10.  Can a method modify a local variable that was defined in the outer scope? Why or why not?
+
+### 11. How can you make an outer scope variable accessible inside a method?
+
+### 12. What is the scope of a method parameter? Can it be accessed outside the method?
+
+### 13.  If you define a local variable inside a method, can you access it after the method has finished executing?
+
+### 14. What happens if you have a local variable with the same name in the outer scope and as a parameter in a method?
+
+### 15. How does variable scope differ between method definitions and method invocations with blocks?
+
+### 16. Can you explain what variable shadowing is and provide an example in the context of method definitions?
+
+### 17. What happens to local variables defined within a block inside a method after the block finishes executing?
+
+### 18. How can you return a local variable from a method to make it accessible in the outer scope?
+
+
 
 
 
