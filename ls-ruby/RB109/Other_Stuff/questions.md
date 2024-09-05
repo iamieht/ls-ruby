@@ -5,27 +5,20 @@
 ## Open-ended questions
 
 
-2.  What is the difference between puts and return in Ruby? Provide an example.
-3.  Describe the concept of pass-by-reference vs. pass-by-value in Ruby. How does it apply to different data types?
-6.  How do Ruby's `Array#map` and `Array#select` methods differ? Provide examples of when you might use each.
 7.  What is the difference between `==` and `===` in Ruby? When would you use each?
-8.  Describe the concept of mutating vs. non-mutating methods in Ruby. Provide examples of each.
-9.  How does Ruby handle variable reassignment vs. method invocation with respect to mutability?
-10. Explain how blocks work in Ruby. How do they differ from methods?
 11. What is the difference between `puts` and `p` in Ruby? When might you choose one over the other?
 12. Explain the concept of short-circuit evaluation in Ruby. How does it apply to the `&&` and `||` operators?
-13. What is the difference between `Array#map` and `Array#each`? Provide an example where using `map` would be more appropriate than `each`.
-14. Describe the difference between `break` and `next` in Ruby loops. When would you use each?
-15. What is method chaining in Ruby? Provide an example and explain how it works.
-16. Explain the concept of method definition and method invocation. How are they different?7.  What is the difference between `==` and `equal?` in Ruby? When would you use each?
-17. How does Ruby handle variable reassignment within a method? Does it affect the original variable outside the method?
-18. Describe the concept of implicit return in Ruby. How does it differ from explicit returns?
-19. What is the difference between `Array#select` and `Array#reject`? Provide examples of when you might use each.
-20. Explain how default parameters work in Ruby methods. Provide an example.
-21. What is the splat operator (`*`) in Ruby? Provide examples of how it can be used in method definitions and method calls.
-22. How does Ruby's `case` statement differ from a series of `if/elsif` statements? When might you choose to use a `case` statement?
-23. Explain the concept of nested data structures in Ruby. How would you access elements in a nested array or hash?
-24. What is the purpose of the `Enumerable` module in Ruby? Name and describe three methods from this module.
+14. Describe the difference between `break` and `next` in Ruby loops. When would you use each
+16. Explain the concept of method definition and method invocation. How are they different?
+17.  What is the difference between `==` and `equal?` in Ruby? When would you use each?
+18. How does Ruby handle variable reassignment within a method? Does it affect the original variable outside the method?
+19. Describe the concept of implicit return in Ruby. How does it differ from explicit returns?
+20. What is the difference between `Array#select` and `Array#reject`? Provide examples of when you might use each.
+21. Explain how default parameters work in Ruby methods. Provide an example.
+22. What is the splat operator (`*`) in Ruby? Provide examples of how it can be used in method definitions and method calls.
+23. How does Ruby's `case` statement differ from a series of `if/elsif` statements? When might you choose to use a `case` statement?
+24. Explain the concept of nested data structures in Ruby. How would you access elements in a nested array or hash?
+25. What is the purpose of the `Enumerable` module in Ruby? Name and describe three methods from this module.
 
 
 ## Truthiness
@@ -497,6 +490,75 @@ puts name
 ### 9. How does variable scope relate to the concepts of pass by reference and pass by value?
 
 ### 10. Can you explain why Ruby is sometimes described as "pass by reference value" rather than strictly pass by value or pass by reference?
+
+
+## Methods
+
+### 1. What is the difference between `puts` and `return` in Ruby methods?
+
+### 2. How do you define a method that takes arguments in Ruby?
+
+### 3. Explain the concept of method chaining in Ruby. Can you provide a simple example?
+
+### 4. What is the purpose of the `each` method in Ruby? How is it commonly used?
+
+### 5. How does the `map` method differ from the `each` method?
+
+### 6. What does the `select` method do in Ruby? How might you use it?
+
+### 7. Explain how the `times` method works in Ruby. When would you use it?
+
+### 8. What is the difference between `!` and `?` at the end of method names in Ruby?
+
+### 9. How does the `split` method work on strings? What does it return?
+
+### 10. What is the purpose of the `join` method? How might you use it with an array?
+
+### 11. What is a block in Ruby? How is it different from a method?
+
+### 12. How do you pass a block to a method in Ruby? What are the two syntaxes for doing this?
+
+### 13. What is the purpose of the `yield` keyword in Ruby methods?
+
+### 14. How can you check if a block was given to a method?
+
+### 15. What is the difference between `each` and `map` when used with blocks?
+
+### 16. How does the `select` method work with blocks? What does it return?
+
+### 17. How can you pass arguments to a block? Can you give an example?
+
+### 18. What is the difference between `{...}` and `do...end` when defining blocks?
+
+### 19. How does the `sort` method use blocks to determine the order of elements?
+
+### 20. What is the difference between a mutating and a non-mutating method in Ruby?
+
+### 21. How can you determine if a method is mutating or non-mutating?
+
+### 22. What does the `<<` operator do to an array? Is it mutating or non-mutating?
+
+### 23. Is the `+` method for arrays mutating or non-mutating? How about for strings?
+
+### 24. What's the difference between `Array#map` and `Array#map!`?
+
+### 25. How does `String#upcase` differ from `String#upcase!`?
+
+### 26. Is `Array#sort` a mutating method? What about `Array#sort!`?
+
+### 27. What happens to the original array when you use `Array#select`? Is it mutated?
+
+### 28. How does assignment (=) interact with mutation? Is it a mutating operation?
+
+### 29. What's the difference between `Array#push` and `Array#+`? Which one is mutating?
+
+### 30. How does `String#gsub` differ from `String#gsub!`?
+
+### 31. When working with hashes, is the `Hash#merge` method mutating or non-mutating?
+
+
+
+
 
 
 
