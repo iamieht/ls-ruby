@@ -456,6 +456,49 @@ puts b
 ### 10. What's the difference between `+=` and `<<` when used with strings?
 
 
+## Pass-by-reference / Pass-by-value
+
+### 1. What types of objects in Ruby are typically passed by value?
+
+### 2. When a method mutates its argument, is this more closely associated with pass by value or pass by reference?
+
+### 3. If you pass an array to a method and the method modifies the array, will the original array be changed outside the method? Why or why not?
+
+### 4. What happens when you reassign a variable inside a method? Does it affect the original object passed to the method?
+
+### 5. How can you determine if two variables are pointing to the same object in Ruby?
+
+### 6. What's the difference between the following two code snippets in terms of their effect on the original array?
+
+```ruby
+def add_to_array(arr)
+    arr << 4
+end
+
+def add_to_array(arr)
+    arr + [4]
+end
+```
+
+### 7. Why is it important to know which methods in Ruby mutate the caller and which don't?
+
+### 8. What will be the output of the following code and why?
+
+```ruby
+def change_name(name)
+    name = "bob"
+end
+
+name = "jim"
+change_name(name)
+puts name
+```
+
+### 9. How does variable scope relate to the concepts of pass by reference and pass by value?
+
+### 10. Can you explain why Ruby is sometimes described as "pass by reference value" rather than strictly pass by value or pass by reference?
+
+
 
 
 
