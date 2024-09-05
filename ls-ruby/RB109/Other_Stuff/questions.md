@@ -425,6 +425,38 @@ puts name
 ### 10. How does constant lookup work in Ruby when you reference a constant?
 
 
+## Mutating values vs. Reassignment of Variables
+
+### 1. What's the difference between `str = str + "!"` and `str << "!"`? How do they affect the original object?
+
+### 2. Given `a = [1, 2, 3]` and `b = a`, what will `b` be after `a = [4, 5, 6]`? Why?
+
+### 3. How does the `<<` method differ from the `+` method when used with arrays?
+
+### 4. If `x = "hello"` and `y = x`, what will `y` be after `x.upcase!`? What about after `x = x.upcase`?
+
+### 5. What's the difference between `arr.map` and `arr.map!` in terms of mutation?
+
+### 6. Given `num = 5`, can you mutate `num`? Why or why not?
+
+### 7. How can you check if a method mutates its caller or returns a new object?
+
+### 8. What will be the output of the following code and why?
+
+```ruby
+a = [1, 2, 3]
+b = a
+a[1] = 4
+puts b
+```
+
+
+### 9. Explain the concept of variables as pointers. How does this relate to mutation and reassignment?
+
+### 10. What's the difference between `+=` and `<<` when used with strings?
+
+
+
 
 
 
