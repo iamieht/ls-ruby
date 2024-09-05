@@ -402,6 +402,31 @@ puts name
 ### 10. How does understanding variable shadowing contribute to writing more maintainable Ruby code?
 
 
+## Scope of Constants
+
+### 1. How does the scope of constants differ from the scope of local variables in Ruby?
+
+### 2. Can a constant defined inside a method be accessed outside of that method? Why or why not?
+
+### 3. What happens if you try to reassign a value to a constant in Ruby?
+
+### 4. How can you access a constant defined in an outer scope from within a method?
+
+### 5. What is the convention for naming constants in Ruby, and why is it important?
+
+### 6. Can you define a constant inside a block? What are the implications of doing so?
+
+### 7. How does the scope of constants behave within classes and modules?
+
+### 8. What is meant by the term "lexical scope" in relation to constants in Ruby?
+
+### 9. Is it possible to have constants with the same name in different scopes? How does Ruby handle this?
+
+### 10. How does constant lookup work in Ruby when you reference a constant?
+
+
+
+
 
 
 
