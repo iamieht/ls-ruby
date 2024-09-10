@@ -12,7 +12,6 @@
 16. Explain the concept of method definition and method invocation. How are they different?
 17.  What is the difference between `==` and `equal?` in Ruby? When would you use each?
 18. How does Ruby handle variable reassignment within a method? Does it affect the original variable outside the method?
-19. Describe the concept of implicit return in Ruby. How does it differ from explicit returns?
 20. What is the difference between `Array#select` and `Array#reject`? Provide examples of when you might use each.
 21. Explain how default parameters work in Ruby methods. Provide an example.
 22. What is the splat operator (`*`) in Ruby? Provide examples of how it can be used in method definitions and method calls.
@@ -667,52 +666,86 @@ end
 
 ## Variable Shadowing
 
-### 1. Can you explain what variable shadowing is and provide an example in the context of method definitions?
+### 1. Does variable shadowing exist in the context of method definitions?
+
+No. Method parameters, create a new local variable scope and don't interact with outer scope variables in the same way blocks do.
 
 ### 2. In what situations does variable shadowing occur?
 
+Variable shadowing occurs in Ruby when a block parameter has the same name as a local variable that's defined outside the block. This creates a situation where the block parameter "shadows" or hides the outer local variable within the block's scope.
+
+```ruby
+n = 10
+
+[1, 2, 3].each do |n|
+  puts n  # This will print 1, 2, 3, not 10
+end
+
+puts n  # This will print 10
+```
+
+In this case, the block parameter `n` shadows the outer local variable `n` inside the block. This means that within the block, any reference to `n` refers to the block parameter, not the outer variable.
+
 ### 3. How does variable shadowing affect the accessibility of outer scope variables within a block?
 
-### 4. Write a code snippet that demonstrates variable shadowing using the `each` method.
+The block parameter shadows or hides the outer local variable within the scope's block.
 
-### 5. How can you avoid variable shadowing when writing Ruby code?
+### 4. How can you avoid variable shadowing when writing Ruby code?
 
-### 6. What's the difference between variable shadowing and variable reassignment?
+Have a different name for the block parameter than the local variable in the outer scope.
 
-### 7. How does variable shadowing impact debugging and code readability?
+### 5. Write a code snippet that shows how to access an outer scope variable inside a block where variable shadowing occurs.
 
-### 8. Write a code snippet that shows how to access an outer scope variable inside a block where variable shadowing occurs.
+```ruby
+n = 10
 
-### 9. Can variable shadowing occur with method parameters? Why or why not?
+[1, 2, 3].each do |n|
+  puts n         # This will print the block parameter (1, 2, 3)
+  puts local_variables  # This will show both 'n' variables
+  puts binding.local_variable_get(:n)  # This will print the outer 'n' (10)
+end
 
-### 10. How does understanding variable shadowing contribute to writing more maintainable Ruby code?
+puts n  # This will print 10 (the outer n)
+```
 
-### 11. Explain the concept of variable shadowing in the context of blocks. When might this occur?
-
-### 12. How does variable scope work when using block parameters that have the same name as outer scope variables?
-
+In this example, we use `binding.local_variable_get(:n)` to access the outer scope variable `n` inside the block, even though it's shadowed by the block parameter of the same name. This method allows us to explicitly retrieve the value of the outer `n`, which is 10.
 
 ## Scope of Constants
 
 ### 1. How does the scope of constants differ from the scope of local variables in Ruby?
 
+1.  Lexical Scope: Constants have lexical scope, meaning they are available within the context where they are defined and in inner scopes. Local variables, on the other hand, are limited to their immediate scope.
+2.  Visibility: Constants defined at the top level are globally accessible, while local variables are only accessible within their defined scope.
+3.  Nesting: Constants can be nested within classes and modules, creating a constant lookup path. Local variables don't have this nesting behavior.
+4.  Inheritance: Constants are inherited in class hierarchies, while local variables are not.
+5.  Reassignment: While constants can be reassigned (with a warning), it's generally discouraged. Local variables can be freely reassigned.
+6.  Block Scope: Unlike local variables, constants are not affected by block scope. They remain accessible across block boundaries.
+
+
 ### 2. Can a constant defined inside a method be accessed outside of that method? Why or why not?
+
+No. Constants are expected to be defined at the class or module level, or in the top-level scope. When you try to define a constant inside a method, Ruby sees this as an attempt to create or modify a constant during program execution, which goes against the intended use of constants.
 
 ### 3. What happens if you try to reassign a value to a constant in Ruby?
 
+If you try to reassign a value to a constant in Ruby, the interpreter will allow it but will issue a warning. Here's what happens:
+1.  The reassignment will be successful, and the constant will take on the new value.  
+2.  Ruby will generate a warning message to indicate that you're redefining a constant.
 ### 4. How can you access a constant defined in an outer scope from within a method?
 
-### 5. What is the convention for naming constants in Ruby, and why is it important?
+To access a constant defined in an outer scope from within a method in Ruby, you can simply use the constant's name directly. Constants have lexical scope, which means they are accessible within the context where they are defined and in inner scopes, including methods.
 
-### 6. Can you define a constant inside a block? What are the implications of doing so?
+### 5. Can you define a constant inside a block? What are the implications of doing so?
 
-### 7. How does the scope of constants behave within classes and modules?
+Yes you can, but Ruby's interpreter will raise a warning about dynamic constant assignment due to the constant being already initialized in a previous step.
 
-### 8. What is meant by the term "lexical scope" in relation to constants in Ruby?
+### 6. How does constant lookup work in Ruby when you reference a constant?
 
-### 9. Is it possible to have constants with the same name in different scopes? How does Ruby handle this?
-
-### 10. How does constant lookup work in Ruby when you reference a constant?
+Constant lookup in Ruby works through a process called constant resolution. When you reference a constant, Ruby searches for it in the following order:
+1.  Lexical scope: Ruby first looks in the current scope where the constant is referenced, then moves outward to enclosing modules or classes.
+2.  Inheritance chain: If the constant isn't found in the lexical scope, Ruby looks up the inheritance hierarchy, starting from the current class and moving up to its superclasses.
+3.  Top-level scope: If the constant is still not found, Ruby checks the top-level (global) scope.
+4.  Object: As a last resort, Ruby checks if the constant is defined on the Object class.If the constant is not found in any of these places, Ruby will raise a NameError.
 
 
 ## Mutating values vs. Reassignment of Variables
