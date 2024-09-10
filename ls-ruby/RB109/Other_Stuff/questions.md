@@ -274,21 +274,217 @@ The first step is to have all the operands as values, before Ruby evaluates the 
 
 ### 1. How does variable scope differ between methods and blocks in Ruby?
 
+In Ruby, methods and blocks have different rules when it comes to variable scope:
+1.  Method Scope:  
+    •   Methods create their own scope.  
+    •   Variables defined inside a method are local to that method and cannot be accessed outside of it.  
+    •   Variables defined outside the method are not accessible inside the method unless they are passed as arguments.
+    2.  Block Scope:  
+    •   Blocks have more flexible scope rules.  
+    •   Blocks can access variables that are defined in the outer scope (the surrounding environment where the block is defined).  
+    •   Variables defined inside a block are not accessible outside of the block.  
+    •   However, blocks can modify variables from the outer scope.
+
+Here's a simple example to illustrate:
+
+```ruby
+# Outer scope variable
+x = 10
+
+# Method definition
+def print_x
+  puts x  # This will raise an error because x is not accessible here
+end
+
+# Block
+[1, 2, 3].each do |i|
+  puts x  # This will work and print 10
+  y = i   # y is defined within the block
+end
+
+puts y  # This will raise an error because y is not accessible here
+```
+
+In this example, the block can access and print the outer variable `x`, but the method `print_x` cannot. Also, the variable `y` defined inside the block is not accessible outside of it. This behavior allows blocks to be more flexible and context-aware, while methods maintain stricter encapsulation of their variables.
+
 ### 2. Explain how variable initialization in an inner scope affects the outer scope.
 
+Variable initialization in an inner scope generally does not affect the outer scope in Ruby. This concept is part of Ruby's variable scoping rules.
+
+When you initialize a new variable inside an inner scope (such as within a block), it remains local to that scope and doesn't affect variables in the outer scope. This is true even if the variable in the inner scope has the same name as a variable in the outer scope.
+
+Here's an example to illustrate:
+
+```ruby
+x = 10  # Outer scope
+
+[1, 2, 3].each do |i|
+  x = i  # This creates a new local variable x, shadowing the outer x
+end
+
+puts x  # This will still print 10
+```
+
+In this case, the `x = i` inside the block creates a new local variable `x` that only exists within the block. It doesn't change the `x` in the outer scope.
+
+However, it's important to note that if you reference a variable from the outer scope within an inner scope without initializing it, you can modify the outer variable:
+
+```ruby
+x = 10  # Outer scope
+
+[1, 2, 3].each do |i|
+  x = x + i  # This modifies the outer x
+end
+
+puts x  # This will print 16
+```
+
+In this case, we're not initializing a new `x`, but modifying the existing one from the outer scope.
 ### 3. How does variable scope work with method definitions in Ruby?
 
-### 4. Explain the concept of variable scope in Ruby. How does it differ between methods and blocks?
+1.  Local variables: Variables defined inside a method are local to that method. They cannot be accessed outside the method.
+2.  Parameters: Method parameters act like local variables within the method.
+3.  Outer scope variables: Methods cannot directly access variables from the outer scope. If you want to use an outer variable in a method, you need to pass it as an argument.
+4.  Return values: To get data out of a method, you need to explicitly return it.
+5.  Constants: Unlike local variables, constants defined outside the method are accessible within the method.
 
-### 5. What happens if you try to access a local variable inside a method that was defined outside the method?
+Here's an example to illustrate these points:
 
-### 6.  Can a method modify a local variable that was defined in the outer scope? Why or why not?
+```ruby
+CONSTANT = 10
 
-### 7. How can you make an outer scope variable accessible inside a method?
+def my_method(param)
+  local_var = 5
+  puts param
+  puts local_var
+  puts CONSTANT
+end
 
-### 8. What is the scope of a method parameter? Can it be accessed outside the method?
+outer_var = 20
+my_method(outer_var)
+# puts local_var  # This would raise an error
+```
 
-### 9.  If you define a local variable inside a method, can you access it after the method has finished executing?
+In this example, `param` and `local_var` are only accessible within the method. `CONSTANT` is accessible because it's a constant. `outer_var` is passed as an argument to make it available inside the method.
+
+Remember, this scoping behavior helps in creating more maintainable and predictable code by preventing unintended variable modifications.
+
+### 4. What happens if you try to access a local variable inside a method that was defined outside the method?
+
+If you try to access a local variable inside a method that was defined outside the method in Ruby, you'll get a NameError. This is because methods in Ruby create their own scope, and they don't have access to local variables defined in the outer scope.
+
+Here's an example to illustrate this:
+
+```ruby
+outer_variable = 10
+
+def my_method
+  puts outer_variable
+end
+
+my_method
+```
+
+When you run this code, you'll get an error like this: 
+
+`NameError: undefined local variable or method 'outer_variable' for main:Object`
+
+This error occurs because `my_method` cannot see or access `outer_variable`, even though it's defined before the method.
+
+If you need to use a variable from the outer scope inside a method, you should pass it as an argument:
+
+```ruby
+outer_variable = 10
+
+def my_method(variable)
+  puts variable
+end
+
+my_method(outer_variable)
+```
+
+This way, the method can access the value of `outer_variable` through its parameter.
+
+Remember, this scoping behavior is intentional in Ruby. It helps prevent unintended side effects and makes your code more predictable and easier to debug.
+### 5.  Can a method modify a local variable that was defined in the outer scope? Why or why not?
+
+In Ruby, a method cannot directly modify a local variable that was defined in the outer scope. This is because methods in Ruby create their own scope, which is separate from the outer scope where the variable was defined.
+
+The reason for this is:
+
+1.  Methods can't access local variables from the outer scope: When a method is called, it creates a new scope that's isolated from the outer scope. It doesn't have direct access to local variables defined outside of it.
+2.  Pass-by-reference-value behavior: When you pass a variable to a method, Ruby passes the value of the variable, not the variable itself. If the object is mutable, it can be modified within the method using mutating methods, if the object is immutable, then it cannot be modified.
+
+Here's an example to illustrate this:
+
+```ruby
+outer_variable = 10
+
+def modify_variable(var)
+  var = 20
+end
+
+modify_variable(outer_variable)
+puts outer_variable  # This will still print 10
+```
+
+In this case, `outer_variable` remains unchanged because the method only modifies its own local copy of the value.
+
+If you need to modify a variable from an outer scope, you would typically return a new value from the method and reassign it to the variable in the outer scope:
+
+```ruby
+outer_variable = 10
+
+def modify_variable(var)
+  var + 10
+end
+
+outer_variable = modify_variable(outer_variable)
+puts outer_variable  # This will print 20
+```
+
+This behavior helps maintain encapsulation and prevents unintended side effects, making Ruby code more predictable and easier to debug.
+
+Pass-by-reference-value behavior:
+
+```ruby
+def modify_array(arr)
+  arr.push(4)  # mutating method
+end
+
+outer_array = [1, 2, 3]
+modify_array(outer_array)
+puts outer_array.inspect  # Outputs: [1, 2, 3, 4]
+```
+
+In this case, the `outer_array` is indeed modified because `push` is a mutating method.
+
+### 6. How can you make an outer scope variable accessible inside a method?
+
+The method must be defined with a parameter or parameters and the outer scope variable can be passed as an argument, in order to make it available inside the method,
+
+### 7. What is the scope of a method parameter? Can it be accessed outside the method?
+
+The scope of a method parameter in Ruby is limited to the method itself. Method parameters act as local variables within the method and cannot be accessed outside of it.
+
+```ruby
+def greet(name)
+  puts "Hello, #{name}!"
+end
+
+greet("Alice")
+puts name  # This will raise a NameError
+```
+
+In this code, `name` is a parameter of the `greet` method. It can be used within the method, but trying to access it outside the method (as in the last line) will result in a NameError because `name` is not defined in that scope.
+
+Method parameters are created when the method is called and destroyed when the method execution is complete. This encapsulation helps maintain clean and predictable code by preventing unintended interactions between different parts of your program.
+
+### 8.  If you define a local variable inside a method, can you access it after the method has finished executing?
+
+No, you cannot access a local variable defined inside a method after the method has finished executing. In Ruby, local variables defined within a method have a scope that is limited to that method. Once the method execution is complete, these local variables are destroyed and are no longer accessible.
+
+When a method returns a value, including a local variable, what's actually being returned is the value of that variable, not the variable itself.
 
 ### 10. What happens if you have a local variable with the same name in the outer scope and as a parameter in a method?
 
