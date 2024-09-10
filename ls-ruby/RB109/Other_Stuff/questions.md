@@ -274,103 +274,55 @@ The first step is to have all the operands as values, before Ruby evaluates the 
 
 ### 1. How does variable scope differ between methods and blocks in Ruby?
 
-### 2. What will the following code output and why?
+### 2. Explain how variable initialization in an inner scope affects the outer scope.
 
-```ruby
-x = 10
-5.times do |x|
-    puts x
-end
-puts x
-```
+### 3. How does variable scope work with method definitions in Ruby?
 
-### 3. What is the output of this code and why?
+### 4. Explain the concept of variable scope in Ruby. How does it differ between methods and blocks?
 
-```ruby
-a = 5
-3.times do |n|
-    a = 3
-    b = 5
-end
-puts a
-puts b
-```
+### 5. What happens if you try to access a local variable inside a method that was defined outside the method?
 
+### 6.  Can a method modify a local variable that was defined in the outer scope? Why or why not?
 
-### 4. Explain how variable initialization in an inner scope affects the outer scope.
+### 7. How can you make an outer scope variable accessible inside a method?
 
+### 8. What is the scope of a method parameter? Can it be accessed outside the method?
 
-### 5. What will this code output and why?
+### 9.  If you define a local variable inside a method, can you access it after the method has finished executing?
 
-```ruby
-arr = [1, 2, 3]
-for i in arr do
-    a = 5
-end
-puts a
-```
+### 10. What happens if you have a local variable with the same name in the outer scope and as a parameter in a method?
 
+### 11. How does variable scope differ between method definitions and method invocations with blocks?
 
-### 6. How does variable scope work with method definitions in Ruby?
+### 12. Can you explain what variable shadowing is and provide an example in the context of method definitions?
 
+### 13. What happens to local variables defined within a block inside a method after the block finishes executing?
 
-### 7. What is the result of running this code and why?
+### 14. How can you return a local variable from a method to make it accessible in the outer scope?
 
-```ruby
-def change_name(name)
-    name = 'bob'
-end
+### 15. How does variable scope differ between method definitions and blocks?
 
-name = 'jim'
-change_name(name)
-puts name
-```
+### 16. Can a block access variables defined in its outer scope? If yes, provide an example.
 
-### 8. Explain the concept of variable scope in Ruby. How does it differ between methods and blocks?
+### 17. What happens when you initialize a variable inside a block? Can you access it outside the block?
 
-### 9. What happens if you try to access a local variable inside a method that was defined outside the method?
+### 18. Explain the concept of variable shadowing in the context of blocks. When might this occur?
 
-### 10.  Can a method modify a local variable that was defined in the outer scope? Why or why not?
+### 19. How do nested blocks handle variable scope? Can an inner block access variables from an outer block?
 
-### 11. How can you make an outer scope variable accessible inside a method?
+### 20. What happens to a variable's value if it's modified inside a block?
 
-### 12. What is the scope of a method parameter? Can it be accessed outside the method?
+### 21. Do peer blocks (blocks at the same level) share scope with each other? Explain with an example.
 
-### 13.  If you define a local variable inside a method, can you access it after the method has finished executing?
+### 22. How does variable scope work when using block parameters that have the same name as outer scope variables?
 
-### 14. What happens if you have a local variable with the same name in the outer scope and as a parameter in a method?
+### 23. Can you initialize a variable in an inner block and access it in an outer block? Why or why not?
 
-### 15. How does variable scope differ between method definitions and method invocations with blocks?
+### 24. What's the difference in variable scope between using `each` and `loop` to create a block?
 
-### 16. Can you explain what variable shadowing is and provide an example in the context of method definitions?
+### 25. How does variable scope work with methods that take blocks as arguments?
 
-### 17. What happens to local variables defined within a block inside a method after the block finishes executing?
-
-### 18. How can you return a local variable from a method to make it accessible in the outer scope?
-
-### 19. How does variable scope differ between method definitions and blocks?
-
-### 20. Can a block access variables defined in its outer scope? If yes, provide an example.
-
-### 21. What happens when you initialize a variable inside a block? Can you access it outside the block?
-
-### 22. Explain the concept of variable shadowing in the context of blocks. When might this occur?
-
-### 23. How do nested blocks handle variable scope? Can an inner block access variables from an outer block?
-
-### 24. What happens to a variable's value if it's modified inside a block?
-
-### 25. Do peer blocks (blocks at the same level) share scope with each other? Explain with an example.
-
-### 26. How does variable scope work when using block parameters that have the same name as outer scope variables?
-
-### 27. Can you initialize a variable in an inner block and access it in an outer block? Why or why not?
-
-### 28. What's the difference in variable scope between using `each` and `loop` to create a block?
-
-### 29. How does variable scope work with methods that take blocks as arguments?
-
-### 30. What happens if you try to use a variable before it's initialized within a block?
+### 26. What happens if you try to use a variable before it's initialized within a block?
 
 ## Variable Shadowing
 
