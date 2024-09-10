@@ -486,43 +486,188 @@ No, you cannot access a local variable defined inside a method after the method 
 
 When a method returns a value, including a local variable, what's actually being returned is the value of that variable, not the variable itself.
 
-### 10. What happens if you have a local variable with the same name in the outer scope and as a parameter in a method?
+### 9. What happens if you have a local variable with the same name in the outer scope and as a parameter in a method?
 
-### 11. How does variable scope differ between method definitions and method invocations with blocks?
+When you have a local variable with the same name in the outer scope and as a parameter in a method, Ruby treats them as separate variables.
 
-### 12. Can you explain what variable shadowing is and provide an example in the context of method definitions?
+```ruby
+x = 10  # Outer scope variable
 
-### 13. What happens to local variables defined within a block inside a method after the block finishes executing?
+def print_x(x)
+  puts x  # This will print the value of the parameter x, not the outer x
+end
 
-### 14. How can you return a local variable from a method to make it accessible in the outer scope?
+print_x(5)  # This will print 5, not 10
+puts x      # This will print 10, the outer x is unchanged
+```
 
-### 15. How does variable scope differ between method definitions and blocks?
+### 10. How does variable scope differ between method definitions and method invocations with blocks?
 
-### 16. Can a block access variables defined in its outer scope? If yes, provide an example.
+The variable scope differs significantly between method definitions and method invocations with blocks in Ruby:
 
-### 17. What happens when you initialize a variable inside a block? Can you access it outside the block?
+1.  Method Definitions:  
+    •   Create their own scope  
+    •   Cannot access local variables from the outer scope  
+    •   Parameters act as local variables within the method  
+    •   Local variables defined inside the method are not accessible outside
+    2.  Method Invocations with Blocks:  
+    •   Can access and modify variables from the outer scope  
+    •   Local variables created inside the block are not accessible outside the block  
+    •   Block parameters are scoped only to the block
 
-### 18. Explain the concept of variable shadowing in the context of blocks. When might this occur?
+### 11. What happens to local variables defined within a block inside a method after the block finishes executing?
 
-### 19. How do nested blocks handle variable scope? Can an inner block access variables from an outer block?
+Local variables defined within a block inside a method are destroyed after the block finishes executing. They have a scope limited to the block itself and are not accessible outside of it, even within the same method.
 
-### 20. What happens to a variable's value if it's modified inside a block?
+```ruby
+def some_method
+  [1, 2, 3].each do |i|
+    block_var = i * 2
+    puts block_var
+  end
+  
+  # Trying to access block_var here would raise an error
+end
 
-### 21. Do peer blocks (blocks at the same level) share scope with each other? Explain with an example.
+some_method
+```
 
-### 22. How does variable scope work when using block parameters that have the same name as outer scope variables?
+In this example, `block_var` is only accessible within the `each` block. Once the block finishes executing, `block_var` is no longer available, even though we're still inside `some_method`.
 
-### 23. Can you initialize a variable in an inner block and access it in an outer block? Why or why not?
+### 12. How can you return a local variable from a method to make it accessible in the outer scope?
 
-### 24. What's the difference in variable scope between using `each` and `loop` to create a block?
+Implicit return: last evaluated expression in the method or
+Explicit return: using the return method
 
-### 25. How does variable scope work with methods that take blocks as arguments?
+### 13. Can a block access variables defined in its outer scope? 
 
-### 26. What happens if you try to use a variable before it's initialized within a block?
+Yes it can. Blocks can access and modify variables initialized in the outer scope but not vice versa.
+
+### 14. How do nested blocks handle variable scope? Can an inner block access variables from an outer block?
+
+Nested blocks in Ruby handle variable scope in an interesting way. Yes, an inner block can access variables from an outer block. This is because blocks in Ruby create a new scope that can see variables from the surrounding scope.
+
+Here's how it works:
+
+1.  Variables defined in an outer block are accessible in inner blocks.  
+2.  Variables defined in an inner block are not accessible in the outer block.  
+3.  Each nested block can access variables from all its parent blocks.
+
+```ruby
+outer_var = 1
+
+1.times do  # outer block
+  middle_var = 2
+  
+  1.times do  # inner block
+    inner_var = 3
+    puts "Inner block can access: #{outer_var}, #{middle_var}, #{inner_var}"
+  end
+  
+  puts "Middle block can access: #{outer_var}, #{middle_var}"
+  # puts inner_var  # This would raise an error
+end
+
+puts "Outer scope can access: #{outer_var}"
+# puts middle_var  # This would raise an error
+```
+
+### 15. What happens to a variable's value if it's modified inside a block?
+
+When a variable's value is modified inside a block in Ruby, the change persists outside the block as well. This is because blocks in Ruby can access and modify variables from the outer scope.
+
+```ruby
+x = 5
+
+[1, 2, 3].each do |i|
+  x = x + i
+end
+
+puts x  # This will output 11
+```
+
+In this case, `x` is modified inside the block, and its value changes from 5 to 11 (5 + 1 + 2 + 3).
+
+This behavior applies to variables that are already defined in the outer scope. If you initialize a new variable inside the block, it won't be accessible outside the block.
+
+### 16. Do peer blocks (blocks at the same level) share scope with each other?
+
+Peer blocks in Ruby do not share scope with each other. Each block creates its own scope, and variables defined within one block are not accessible from another block at the same level.
+
+```ruby
+[1, 2, 3].each do |i|
+  a = i * 2
+  puts "First block: #{a}"
+end
+
+[4, 5, 6].each do |i|
+  puts "Second block: #{a}"  # This would raise an error
+  b = i * 3
+end
+
+puts a  # This would also raise an error
+puts b  # This would also raise an error
+```
+
+### 17. What's the difference in variable scope between using `each` and `loop` to create a block?
+
+Both `each` and `loop` in Ruby create their own block scope. Variables initialized inside either of these blocks are not accessible outside the block after execution.
+
+```ruby
+# Using each
+array = [1, 2, 3]
+array.each do |i|
+  x = i * 2
+end
+# puts x  # This would raise a NameError
+
+# Using loop
+counter = 0
+loop do
+  y = counter * 2
+  counter += 1
+  break if counter >= 3
+end
+# puts y  # This would also raise a NameError
+```
+
+### 18. How does variable scope work with methods that take blocks as arguments?
+
+When methods take blocks as arguments in Ruby, the variable scope works as follows:
+1.  The block can access variables from the outer scope where it's defined.  
+2.  Variables defined inside the block are not accessible outside the block.  
+3.  The method itself cannot directly access variables defined in the block.
+
+```ruby
+x = 10
+
+def method_with_block
+  yield
+end
+
+method_with_block do
+  puts x  # This can access x from the outer scope
+  y = 20  # This is only accessible within the block
+end
+
+# puts y  # This would raise an error
+```
+
+In this case, the block can access `x` from the outer scope, but `y` is only accessible within the block. The method `method_with_block` can't directly access either `x` or `y`.
+### 19. What happens if you try to use a variable before it's initialized within a block?
+
+If you try to use a variable before it's initialized within a block in Ruby, you'll get a `NameError`. This is because Ruby evaluates code within blocks from top to bottom, and variables need to be defined before they can be used.
+
+```ruby
+[1, 2, 3].each do |i|
+  puts x  # This will raise a NameError
+  x = i * 2
+end
+```
 
 ## Variable Shadowing
 
-### 1. What is variable shadowing in Ruby?
+### 1. Can you explain what variable shadowing is and provide an example in the context of method definitions?
 
 ### 2. In what situations does variable shadowing occur?
 
@@ -541,6 +686,10 @@ When a method returns a value, including a local variable, what's actually being
 ### 9. Can variable shadowing occur with method parameters? Why or why not?
 
 ### 10. How does understanding variable shadowing contribute to writing more maintainable Ruby code?
+
+### 11. Explain the concept of variable shadowing in the context of blocks. When might this occur?
+
+### 12. How does variable scope work when using block parameters that have the same name as outer scope variables?
 
 
 ## Scope of Constants
