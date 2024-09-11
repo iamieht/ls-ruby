@@ -783,43 +783,121 @@ puts b
 
 ### 1. What types of objects in Ruby are typically passed by value?
 
+In Ruby, immutable objects are typically passed by value. The most common examples of these are:
+1.  Numbers (integers and floats)  
+2.  Booleans (true and false)  
+3.  Symbols  
+4.  nil
+When these types of objects are passed to a method, Ruby creates a copy of the object's value. This means that any modifications made to the parameter inside the method won't affect the original object outside the method.
+
+It's important to note, however, that while we often say these are "passed by value," Ruby actually uses a mechanism called "pass by reference of the value" or "pass by object reference." This means that variables hold references to objects, and it's these references that are passed to methods. For immutable objects, this behaves effectively like pass by value because the object itself cannot be modified.
+
 ### 2. When a method mutates its argument, is this more closely associated with pass by value or pass by reference?
+
+When a method mutates its argument, this behavior is more closely associated with pass by reference.In pass by reference, the method receives a reference to the original object, allowing it to directly modify the object. This is why mutations to the argument inside the method affect the original object outside the method.
+
+For example, in Ruby:
+
+```ruby
+def add_exclamation(str)
+  str << "!"
+end
+
+greeting = "Hello"
+add_exclamation(greeting)
+puts greeting  # Outputs: "Hello!"
+```
+
+In this case, the `<<` method mutates the original string object. This behavior is characteristic of pass by reference, where changes to the parameter inside the method are reflected in the original object.
+
+It's important to note that in Ruby, while we often use terms like "pass by reference" and "pass by value," the language actually uses a mechanism called "pass by reference of the value" or "pass by object reference." This nuance becomes important when working with different data types and understanding how methods interact with their arguments.
 
 ### 3. If you pass an array to a method and the method modifies the array, will the original array be changed outside the method? Why or why not?
 
+Yes, if you pass an array to a method and the method modifies the array, the original array will be changed outside the method. This is because arrays in Ruby are mutable objects and are passed by reference.
+
+When you pass an array to a method, Ruby passes a reference to the original array object. This means that the method receives a reference to the same array that exists outside the method. Any modifications made to the array inside the method will affect the original array.
+
+Here's an example to illustrate this:
+
+```ruby
+def add_element(arr)
+  arr.push("new element")
+end
+
+original_array = [1, 2, 3]
+add_element(original_array)
+
+puts original_array.inspect  # Output: [1, 2, 3, "new element"]
+```
+
+In this example, the `add_element` method modifies the array by adding a new element. When we print the `original_array` after calling the method, we see that it has been changed.
+
+This behavior is consistent with Ruby's object passing mechanism, where variables hold references to objects, and it's these references that are passed to methods. For mutable objects like arrays, this allows methods to modify the original object.
+
 ### 4. What happens when you reassign a variable inside a method? Does it affect the original object passed to the method?
+
+When you reassign a variable inside a method in Ruby, it does not affect the original object passed to the method. This is because reassignment creates a new local variable within the method's scope, which is separate from the original object.
+
+Here's an example to illustrate this:
+
+```ruby
+def change_number(num)
+  num = 10
+end
+
+x = 5
+change_number(x)
+puts x  # Output: 5
+```
+
+In this case, even though we reassign `num` inside the method, the original variable `x` remains unchanged. The reassignment only affects the local variable within the method's scope.
+
+This behavior is consistent for both mutable and immutable objects. However, it's important to note that this is different from mutating an object. If you perform operations that mutate the object (like `<<` for arrays or `[]=` for hashes), those changes will affect the original object.
 
 ### 5. How can you determine if two variables are pointing to the same object in Ruby?
 
-### 6. What's the difference between the following two code snippets in terms of their effect on the original array?
+object_id method
 
-```ruby
-def add_to_array(arr)
-    arr << 4
-end
-
-def add_to_array(arr)
-    arr + [4]
-end
-```
 
 ### 7. Why is it important to know which methods in Ruby mutate the caller and which don't?
 
-### 8. What will be the output of the following code and why?
+Understanding which methods in Ruby mutate the caller and which don't is crucial for several reasons:
+1.  Predictable code behavior: Knowing whether a method mutates its caller helps you predict how your code will behave. This is essential for writing reliable and bug-free programs.
+2.  Avoiding unintended side effects: Methods that mutate their caller can cause unexpected changes in other parts of your program. Being aware of these methods helps you avoid accidental modifications to your data.
+3.  Efficient programming: Understanding mutation can help you write more efficient code. Sometimes, you might want to mutate an object to avoid unnecessary object creation.
+4.  Debugging: When troubleshooting issues, knowing which methods mutate can help you quickly identify the source of unexpected changes in your data.
+5.  Method chaining: Mutation knowledge is crucial when chaining methods. Methods that return self can be chained, while those that don't mutate often return a new object.
+6.  Writing clear and intention-revealing code: By understanding mutation, you can choose the appropriate methods to clearly express your intentions in the code.
 
-```ruby
-def change_name(name)
-    name = "bob"
-end
+Remember, Ruby has both mutating and non-mutating versions of many methods (like `sort` and `sort!`). Knowing the difference allows you to choose the right tool for each situation in your programs.
 
-name = "jim"
-change_name(name)
-puts name
-```
 
 ### 9. How does variable scope relate to the concepts of pass by reference and pass by value?
 
+Variable scope in Ruby is closely related to the concepts of pass by reference and pass by value, particularly in how it affects the behavior of variables inside and outside of methods.
+
+In Ruby, variables have different scopes: local, instance, class, and global. When we pass variables to methods, we're dealing with local variable scope.
+
+When a variable is passed to a method:
+1.  If it's an immutable object (like numbers or booleans), it behaves like pass by value. The method receives a copy of the value, and any changes to the variable inside the method don't affect the original variable outside.
+2.  If it's a mutable object (like arrays or hashes), it behaves more like pass by reference. The method receives a reference to the object, and mutations to the object inside the method will affect the original object outside.
+
+However, reassignment inside a method always creates a new local variable, regardless of whether the object is mutable or immutable. This new variable is scoped only to the method and doesn't affect the original variable outside the method.
+
 ### 10. Can you explain why Ruby is sometimes described as "pass by reference value" rather than strictly pass by value or pass by reference?
+
+Ruby is often described as "pass by reference value" because it combines aspects of both pass by value and pass by reference, which can lead to some confusion.
+
+In Ruby, when you pass an object to a method, what's actually being passed is a reference to that object, not the object itself. This reference is passed by value. This means:
+1.  The method receives a copy of the reference to the object, not the original reference.  
+2.  If you reassign the parameter inside the method, it doesn't affect the original variable outside the method.  
+3.  However, if you use the reference to mutate the object it points to, those changes will be reflected in the original object.
+This behavior explains why:
+* Reassignment inside a method doesn't affect the original variable.  
+* Mutating operations on objects (like appending to an array) do affect the original object.
+ 
+This mechanism allows Ruby to provide consistent behavior across different types of objects while still allowing for efficient passing of large objects.
 
 
 ## Methods
