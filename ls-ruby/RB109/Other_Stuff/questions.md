@@ -860,7 +860,7 @@ This behavior is consistent for both mutable and immutable objects. However, it'
 object_id method
 
 
-### 7. Why is it important to know which methods in Ruby mutate the caller and which don't?
+### 6. Why is it important to know which methods in Ruby mutate the caller and which don't?
 
 Understanding which methods in Ruby mutate the caller and which don't is crucial for several reasons:
 1.  Predictable code behavior: Knowing whether a method mutates its caller helps you predict how your code will behave. This is essential for writing reliable and bug-free programs.
@@ -873,7 +873,7 @@ Understanding which methods in Ruby mutate the caller and which don't is crucial
 Remember, Ruby has both mutating and non-mutating versions of many methods (like `sort` and `sort!`). Knowing the difference allows you to choose the right tool for each situation in your programs.
 
 
-### 9. How does variable scope relate to the concepts of pass by reference and pass by value?
+### 7. How does variable scope relate to the concepts of pass by reference and pass by value?
 
 Variable scope in Ruby is closely related to the concepts of pass by reference and pass by value, particularly in how it affects the behavior of variables inside and outside of methods.
 
@@ -885,7 +885,7 @@ When a variable is passed to a method:
 
 However, reassignment inside a method always creates a new local variable, regardless of whether the object is mutable or immutable. This new variable is scoped only to the method and doesn't affect the original variable outside the method.
 
-### 10. Can you explain why Ruby is sometimes described as "pass by reference value" rather than strictly pass by value or pass by reference?
+### 8. Can you explain why Ruby is sometimes described as "pass by reference value" rather than strictly pass by value or pass by reference?
 
 Ruby is often described as "pass by reference value" because it combines aspects of both pass by value and pass by reference, which can lead to some confusion.
 
