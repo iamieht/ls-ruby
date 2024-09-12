@@ -1016,7 +1016,7 @@ end
 ```
 
 The `times` method is particularly useful when you need to perform an action a specific number of times, especially when you don't need an array of results (unlike `map`) or when you're not iterating over an existing collection (unlike `each`).
-### 8. What is the difference between `!` and `?` at the end of method names in Ruby?
+### 6. What is the difference between `!` and `?` at the end of method names in Ruby?
 
 1.  Methods ending with `?`:  
     •   These methods typically return a boolean value (true or false).  
@@ -1030,7 +1030,7 @@ The `times` method is particularly useful when you need to perform an action a
     It's important to note that these are conventions, not strict rules. Always check the documentation or the method's behavior to be sure of what it does.
     
     Remember, when using methods with `!`, be cautious as they modify the original object, which might lead to unexpected results if you're not aware of this behavior.
-### 9. How does the `split` method work on strings? What does it return?
+### 7. How does the `split` method work on strings? What does it return?
 
 The `split` method in Ruby is used to divide a string into an array of substrings. Here's how it works:
 1.  By default, `split` uses whitespace as a delimiter. It breaks the string at each occurrence of whitespace (spaces, tabs, newlines) and returns an array of the resulting substrings.
@@ -1052,7 +1052,7 @@ puts fruits.inspect  # Output: ["apple", "banana", "cherry"]
 In the first example, `split` uses the default whitespace delimiter. In the second, we specify a comma as the delimiter.
 
 Remember, `split` does not modify the original string; it always returns a new array.
-### 10. What is the purpose of the `join` method? How might you use it with an array?
+### 8. What is the purpose of the `join` method? How might you use it with an array?
 
 The `join` method in Ruby is used to combine all elements of an array into a single string. Here's how it works and how you might use it:
 
@@ -1082,7 +1082,7 @@ puts numbers.join('-')
 The `join` method is particularly useful when you need to create a string from array elements, such as when formatting output or preparing data for display or storage.
 
 Remember, `join` returns a new string and doesn't modify the original array.
-### 11. What is a block in Ruby? How is it different from a method?
+### 9. What is a block in Ruby? How is it different from a method?
 
 A block in Ruby is a chunk of code that you can pass to methods. It's enclosed in either do...end keywords or curly braces {}. Blocks are often used with iterators and can take parameters.
 
@@ -1104,11 +1104,11 @@ end
 In this case, the block is everything between `do` and `end`. It's passed to the `each` method and executed for each element in the array.
 
 Blocks are fundamental to Ruby and are used extensively with built-in methods like `each`, `map`, `select`, and many others.
-### 12. How do you pass a block to a method in Ruby? What are the two syntaxes for doing this?
+### 10. How do you pass a block to a method in Ruby? What are the two syntaxes for doing this?
 
 `{ }` or `do..end`
 
-### 13. What is the purpose of the `yield` keyword in Ruby methods?
+### 11. What is the purpose of the `yield` keyword in Ruby methods?
 
 The `yield` keyword in Ruby methods is used to transfer control from the method to a block that is passed to the method. Here's what it does:
 
@@ -1141,7 +1141,7 @@ In this example, the greet method yields control to the block { puts "Ivan!" } w
 
 The yield keyword is a powerful feature in Ruby that allows for flexible and reusable code, especially when working with iterators and custom methods that need to perform some action that can vary depending on how the method is called.
 
-### 14. How can you check if a block was given to a method?
+### 12. How can you check if a block was given to a method?
 
 In Ruby, you can check if a block was given to a method using the `block_given?` method. This method returns `true` if a block was passed to the method, and `false` otherwise.
 
@@ -1174,7 +1174,7 @@ No block was given.
 
 Using `block_given?` allows your method to behave differently depending on whether a block was passed to it or not. This can be particularly useful when you want to make your methods more flexible and able to handle different scenarios.
 
-### 15. What is the difference between `each` and `map` when used with blocks?
+### 13. What is the difference between `each` and `map` when used with blocks?
 
 The difference between `each` and `map` when used with blocks in Ruby is primarily in their return values and intended use:
 
@@ -1207,7 +1207,7 @@ In this example, `each` doesn't change the original array, while `map` creat
 
 Use `each` when you want to perform an action for each element without changing the collection. Use `map` when you want to transform each element and create a new collection with the results.
 
-### 16. How does the `select` method work with blocks? What does it return?
+### 14. How does the `select` method work with blocks? What does it return?
 
 The `select` method in Ruby works with blocks to filter elements from a collection based on a condition. Here's how it functions:
 1.  It iterates over each element in the collection (like an array or hash).  
@@ -1229,7 +1229,7 @@ In this case, `select` goes through each number and keeps only those for which
 
 Remember, `select` doesn't modify the original collection. Instead, it returns a new array with the selected elements. If no elements match the condition in the block, `select` will return an empty array.
 
-### 17. How can you pass arguments to a block? Can you give an example?
+### 15. How can you pass arguments to a block? Can you give an example?
 
 In Ruby, you can pass arguments to a block when you yield to it from within a method. Here's how it works:
 1.  In the method, you can pass arguments to `yield`:
@@ -1263,33 +1263,95 @@ This will output: "Hello, the answer is 42"
 
 Remember, the block parameters are local to the block and won't affect variables with the same names outside the block.
 
-### 18. What is the difference between `{...}` and `do...end` when defining blocks?
+### 16. What is the difference between `{...}` and `do...end` when defining blocks?
 
-### 19. How does the `sort` method use blocks to determine the order of elements?
+In Ruby, both `{...}` and `do...end` are used to define blocks, but they have some differences in usage and precedence:
 
-### 20. What is the difference between a mutating and a non-mutating method in Ruby?
+1.  Syntax:  
+    •   `{...}` is typically used for single-line blocks  
+    •   `do...end` is usually used for multi-line blocks
+    2.  Precedence:  
+    •   `{...}` has higher precedence  
+    •   `do...end` has lower precedence
+    3.  Convention:  
+    •   `{...}` is often used with methods that take blocks as arguments  
+    •   `do...end` is commonly used with language constructs and method definitions
 
-### 21. How can you determine if a method is mutating or non-mutating?
 
-### 22. What does the `<<` operator do to an array? Is it mutating or non-mutating?
+### 17. How does the `sort` method use blocks to determine the order of elements?
 
-### 23. Is the `+` method for arrays mutating or non-mutating? How about for strings?
+The `sort` method in Ruby can use blocks to determine the order of elements. Here's how it works:
 
-### 24. What's the difference between `Array#map` and `Array#map!`?
+1.  By default, `sort` uses the `<=>` (spaceship) operator to compare elements.
+2.  When you provide a block to `sort`, it uses that block to determine the order instead.
+3.  The block should take two parameters, which represent two elements being compared.
+4.  The block should return -1 if the first element should come before the second, 1 if it should come after, and 0 if they are equal.
 
-### 25. How does `String#upcase` differ from `String#upcase!`?
+Here's an example:
 
-### 26. Is `Array#sort` a mutating method? What about `Array#sort!`?
+```ruby
+numbers = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3]
 
-### 27. What happens to the original array when you use `Array#select`? Is it mutated?
+sorted = numbers.sort { |a, b| a <=> b }  # ascending order
+puts sorted.inspect  # [1, 1, 2, 3, 3, 4, 5, 5, 6, 9]
 
-### 28. How does assignment (=) interact with mutation? Is it a mutating operation?
+sorted = numbers.sort { |a, b| b <=> a }  # descending order
+puts sorted.inspect  # [9, 6, 5, 5, 4, 3, 3, 2, 1, 1]
+```
 
-### 29. What's the difference between `Array#push` and `Array#+`? Which one is mutating?
+You can also use blocks to sort by specific criteria:
 
-### 30. How does `String#gsub` differ from `String#gsub!`?
+```ruby
+fruits = ["apple", "banana", "cherry"]
+sorted = fruits.sort { |a, b| a.length <=> b.length }
+puts sorted.inspect  # ["apple", "cherry", "banana"]
+```
 
-### 31. When working with hashes, is the `Hash#merge` method mutating or non-mutating?
+
+### 18. What does the `<<` operator do to an array? Is it mutating or non-mutating?
+
+Appends an element to the Array and it is a mutating method
+
+### 19. Is the `+` method for arrays mutating or non-mutating? How about for strings?
+
+The `+` method for arrays in Ruby is non-mutating. When you use the `+` method to concatenate arrays, it creates and returns a new array containing all the elements from both arrays, leaving the original arrays unchanged.
+
+The `+` method for Strings, concatenate two Strings together and returning a new object. Is a non-mutating method as well.
+
+### 20. How does assignment (=) interact with mutation? Is it a mutating operation?
+
+Assignment (=) in Ruby is not a mutating operation itself. However, it's important to understand how it interacts with mutation:
+1.  For immutable objects (like numbers or symbols):  
+    Assignment simply points the variable to a new object.
+    2.  For mutable objects (like arrays or hashes):  
+    Assignment makes the variable reference a different object, but doesn't change the original object.
+
+Here's an example to illustrate:
+
+```ruby
+a = [1, 2, 3]
+b = a
+a = [4, 5, 6]
+
+puts a.inspect  # [4, 5, 6]
+puts b.inspect  # [1, 2, 3]
+```
+
+In this case, `a = [4, 5, 6]` doesn't mutate the original array. It creates a new array and makes `a` point to it. `b` still points to the original array.
+
+However, if you mutate the object that a variable points to, all variables referencing that object will see the change:
+
+```ruby
+a = [1, 2, 3]
+b = a
+a[0] = 4
+
+puts a.inspect  # [4, 2, 3]
+puts b.inspect  # [4, 2, 3]
+```
+
+Here, `a[0] = 4` mutates the array that both `a` and `b` reference.
+
 
 
 
