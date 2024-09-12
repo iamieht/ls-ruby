@@ -904,37 +904,364 @@ This mechanism allows Ruby to provide consistent behavior across different types
 
 ### 1. What is the difference between `puts` and `return` in Ruby methods?
 
-### 2. How do you define a method that takes arguments in Ruby?
+1.  `puts`:  
+    •   `puts` is a method used to output information to the console.  
+    •   When you use `puts` inside a method, it will print the given value to the screen.  
+    •   However, `puts` always returns `nil`, regardless of what it prints.  
+    •   Using `puts` doesn't affect the return value of the method unless it's the last evaluated expression.
+    2.  `return`:  
+    •   `return` is a keyword used to explicitly specify what a method should return.  
+    •   It immediately exits the method and returns the specified value.  
+    •   If no value is specified with `return`, the method returns `nil`.  
+    •   If `return` is not used, Ruby methods implicitly return the result of the last evaluated expression.
 
-### 3. Explain the concept of method chaining in Ruby. Can you provide a simple example?
+### 2. Explain the concept of method chaining in Ruby. Can you provide a simple example?
 
-### 4. What is the purpose of the `each` method in Ruby? How is it commonly used?
+Method chaining is a technique where you call multiple methods in sequence, with each method call being performed on the result of the previous method. This allows you to perform several operations in a single line of code, making it more concise and often more readable.
 
-### 5. How does the `map` method differ from the `each` method?
+In Ruby, method chaining works because methods typically return an object, and you can call methods on that returned object immediately. Here's a simple example:
 
-### 6. What does the `select` method do in Ruby? How might you use it?
+```ruby
+name = "ivan"
+result = name.upcase.reverse
 
-### 7. Explain how the `times` method works in Ruby. When would you use it?
+puts result  # Output: NAVI
+```
 
+In this example:
+1.  We start with the string "ivan"  
+2.  We call the `upcase` method, which returns "IVAN"  
+3.  We then immediately call `reverse` on that result, which returns "NAVI"
+
+Each method in the chain is called on the result of the previous method. This can be extended to more methods:
+
+```ruby
+numbers = [1, 2, 3, 4, 5]
+result = numbers.select { |num| num.even? }.map { |num| num * 2 }
+
+puts result  # Output: [4, 8]
+```
+
+Here, we first `select` the even numbers, then `map` over those to double each one.
+
+Method chaining can make your code more readable and efficient, but it's important to use it judiciously. If a chain becomes too long or complex, it might be better to break it into separate steps for clarity.
+
+Remember, for method chaining to work, each method in the chain (except possibly the last one) needs to return an object that responds to the next method in the chain.
+
+### 3. How does the `map` method differ from the `each` method?
+
+The `map` and `each` methods in Ruby are both used for iterating over collections, but they serve different purposes and have distinct behaviors:
+
+1.  `each` method:  
+    •   Iterates through each element in a collection.  
+    •   Executes the given block for each element.  
+    •   Always returns the original collection.  
+    •   Used primarily for its side effects (like printing or modifying external variables).
+    2.  `map` method:  
+    •   Also iterates through each element in a collection.  
+    •   Executes the given block for each element.  
+    •   Creates a new array containing the results of running the block for every element.  
+    •   Returns the new array with transformed values.
+
+Here's an example to illustrate the difference:
+
+```ruby
+numbers = [1, 2, 3, 4, 5]
+
+# Using each
+each_result = numbers.each { |num| num * 2 }
+puts each_result  # Output: [1, 2, 3, 4, 5]
+
+# Using map
+map_result = numbers.map { |num| num * 2 }
+puts map_result  # Output: [2, 4, 6, 8, 10]
+```
+
+In this example, `each` doesn't change the original array, while `map` creates a new array with the transformed values.
+
+Use `each` when you want to perform an action for each element without changing the collection. Use `map` when you want to transform each element and create a new collection with the results.
+### 4. What does the `select` method do in Ruby? How might you use it?
+
+The `select` method iterates over a collection (like an array or hash) and returns a new collection containing only the elements for which the given block returns a true value.
+
+Here's a simple example to illustrate:
+
+```ruby
+numbers = [1, 2, 3, 4, 5, 6]
+even_numbers = numbers.select { |num| num.even? }
+puts even_numbers  # Output: [2, 4, 6]
+```
+
+In this example, `select` goes through each number in the array and keeps only those for which the block `{ |num| num.even? }` returns true.
+
+The `select` method is particularly useful when you want to filter elements in a collection based on certain criteria. It doesn't modify the original collection but instead returns a new one with the selected elements.
+
+Remember, if no elements match the condition in the block, `select` will return an empty collection.
+
+### 5. Explain how the `times` method works in Ruby. When would you use it?
+
+The `times` method in Ruby is a simple and useful way to repeat an action a specific number of times. Here's how it works:
+
+1.  It's called on an integer.  
+2.  It executes the given block the number of times specified by the integer.  
+3.  It passes the current iteration number (starting from 0) to the block if the block accepts an argument.  
+4.  It returns the original integer.
+
+Here's a basic example:
+
+```ruby
+5.times do |i|
+  puts "Iteration #{i}"
+end
+```
+
+The `times` method is particularly useful when you need to perform an action a specific number of times, especially when you don't need an array of results (unlike `map`) or when you're not iterating over an existing collection (unlike `each`).
 ### 8. What is the difference between `!` and `?` at the end of method names in Ruby?
 
+1.  Methods ending with `?`:  
+    •   These methods typically return a boolean value (true or false).  
+    •   They're often used for asking questions about an object.  
+    •   Example: `array.empty?` returns true if the array has no elements, false otherwise.
+    2.  Methods ending with `!`:  
+    •   These methods typically modify the object they're called on, often in a more "dangerous" or surprising way.  
+    •   They often have a non-`!` version that returns a new object instead of modifying the original.  
+    •   Example: `array.sort!` sorts the array in place, modifying the original array, while `array.sort` returns a new sorted array without changing the original.
+    
+    It's important to note that these are conventions, not strict rules. Always check the documentation or the method's behavior to be sure of what it does.
+    
+    Remember, when using methods with `!`, be cautious as they modify the original object, which might lead to unexpected results if you're not aware of this behavior.
 ### 9. How does the `split` method work on strings? What does it return?
 
+The `split` method in Ruby is used to divide a string into an array of substrings. Here's how it works:
+1.  By default, `split` uses whitespace as a delimiter. It breaks the string at each occurrence of whitespace (spaces, tabs, newlines) and returns an array of the resulting substrings.
+2.  You can also specify a different delimiter as an argument to `split`.
+3.  `split` returns a new array containing the substrings.
+
+Here are some examples:
+
+```ruby
+sentence = "Hello world! How are you?"
+words = sentence.split
+puts words.inspect  # Output: ["Hello", "world!", "How", "are", "you?"]
+
+csv_data = "apple,banana,cherry"
+fruits = csv_data.split(',')
+puts fruits.inspect  # Output: ["apple", "banana", "cherry"]
+```
+
+In the first example, `split` uses the default whitespace delimiter. In the second, we specify a comma as the delimiter.
+
+Remember, `split` does not modify the original string; it always returns a new array.
 ### 10. What is the purpose of the `join` method? How might you use it with an array?
 
+The `join` method in Ruby is used to combine all elements of an array into a single string. Here's how it works and how you might use it:
+
+1.  Purpose:  
+    •   `join` concatenates the elements of an array into a single string.  
+    •   By default, it joins the elements without any separator between them.
+    2.  Usage with an array:  
+    •   You can call `join` on any array.  
+    •   You can optionally specify a separator string as an argument.
+
+Here are some examples:
+
+```ruby
+fruits = ['apple', 'banana', 'cherry']
+
+puts fruits.join
+# Output: applebananacherry
+
+puts fruits.join(', ')
+# Output: apple, banana, cherry
+
+numbers = [1, 2, 3, 4, 5]
+puts numbers.join('-')
+# Output: 1-2-3-4-5
+```
+
+The `join` method is particularly useful when you need to create a string from array elements, such as when formatting output or preparing data for display or storage.
+
+Remember, `join` returns a new string and doesn't modify the original array.
 ### 11. What is a block in Ruby? How is it different from a method?
 
+A block in Ruby is a chunk of code that you can pass to methods. It's enclosed in either do...end keywords or curly braces {}. Blocks are often used with iterators and can take parameters.
+
+Here's how blocks differ from methods:
+1.  Definition: Methods are defined with the `def` keyword, while blocks are passed to methods directly.
+2.  Reusability: Methods can be called multiple times by name, while blocks are typically used once with the method they're passed to.
+3.  Return value: Methods explicitly return a value, while blocks implicitly return the value of their last expression.
+4.  Parameters: Methods have defined parameters, while blocks can work with yielded values from the method they're passed to.
+5.  Scope: Methods create their own scope, while blocks can access variables from the surrounding scope.
+
+Here's a simple example of a block:
+
+```ruby
+[1, 2, 3].each do |number|
+  puts number * 2
+end
+```
+
+In this case, the block is everything between `do` and `end`. It's passed to the `each` method and executed for each element in the array.
+
+Blocks are fundamental to Ruby and are used extensively with built-in methods like `each`, `map`, `select`, and many others.
 ### 12. How do you pass a block to a method in Ruby? What are the two syntaxes for doing this?
+
+`{ }` or `do..end`
 
 ### 13. What is the purpose of the `yield` keyword in Ruby methods?
 
+The `yield` keyword in Ruby methods is used to transfer control from the method to a block that is passed to the method. Here's what it does:
+
+1.  It allows a method to receive a block and execute it at a specific point within the method.
+2.  When `yield` is called, Ruby executes the block that was passed to the method.
+3.  After the block finishes executing, control returns to the method at the point immediately after the `yield` statement.
+4.  You can pass arguments to the block by adding them to the `yield` statement.
+
+Here's a simple example:
+
+```ruby
+def greet
+  puts "Hello, "
+  yield
+  puts "Nice to meet you!"
+end
+
+greet { puts "Ivan!" }
+```
+
+This would output:
+
+```ruby
+Hello, 
+Ivan!
+Nice to meet you!
+```
+
+In this example, the greet method yields control to the block { puts "Ivan!" } when it encounters the yield keyword.
+
+The yield keyword is a powerful feature in Ruby that allows for flexible and reusable code, especially when working with iterators and custom methods that need to perform some action that can vary depending on how the method is called.
+
 ### 14. How can you check if a block was given to a method?
+
+In Ruby, you can check if a block was given to a method using the `block_given?` method. This method returns `true` if a block was passed to the method, and `false` otherwise.
+
+Here's an example of how you might use it:
+
+```ruby
+def my_method
+  if block_given?
+    puts "A block was given!"
+    yield
+  else
+    puts "No block was given."
+  end
+end
+
+# Calling the method with a block
+my_method { puts "This is the block" }
+
+# Calling the method without a block
+my_method
+```
+
+When you run this code, it will output:
+
+```ruby
+A block was given!
+This is the block
+No block was given.
+```
+
+Using `block_given?` allows your method to behave differently depending on whether a block was passed to it or not. This can be particularly useful when you want to make your methods more flexible and able to handle different scenarios.
 
 ### 15. What is the difference between `each` and `map` when used with blocks?
 
+The difference between `each` and `map` when used with blocks in Ruby is primarily in their return values and intended use:
+
+1.  `each`:  
+    •   Iterates through each element in a collection.  
+    •   Executes the given block for each element.  
+    •   Always returns the original collection.  
+    •   Used primarily for its side effects (like printing or modifying external variables).
+    2.  `map`:  
+    •   Also iterates through each element in a collection.  
+    •   Executes the given block for each element.  
+    •   Creates a new array containing the results of running the block for every element.  
+    •   Returns the new array with transformed values.
+
+Here's an example to illustrate:
+
+```ruby
+numbers = [1, 2, 3, 4, 5]
+
+# Using each
+each_result = numbers.each { |num| num * 2 }
+puts each_result  # Output: [1, 2, 3, 4, 5]
+
+# Using map
+map_result = numbers.map { |num| num * 2 }
+puts map_result  # Output: [2, 4, 6, 8, 10]
+```
+
+In this example, `each` doesn't change the original array, while `map` creates a new array with the transformed values.
+
+Use `each` when you want to perform an action for each element without changing the collection. Use `map` when you want to transform each element and create a new collection with the results.
+
 ### 16. How does the `select` method work with blocks? What does it return?
 
+The `select` method in Ruby works with blocks to filter elements from a collection based on a condition. Here's how it functions:
+1.  It iterates over each element in the collection (like an array or hash).  
+2.  For each element, it passes the element to the block.  
+3.  If the block returns a truthy value for an element, that element is included in the result.  
+4.  If the block returns a falsy value (false or nil), that element is excluded.
+
+The `select` method returns a new array containing all elements for which the block returns a true value.
+
+Here's an example:
+
+```ruby
+numbers = [1, 2, 3, 4, 5, 6]
+even_numbers = numbers.select { |num| num.even? }
+puts even_numbers  # Output: [2, 4, 6]
+```
+
+In this case, `select` goes through each number and keeps only those for which the block `{ |num| num.even? }` returns true.
+
+Remember, `select` doesn't modify the original collection. Instead, it returns a new array with the selected elements. If no elements match the condition in the block, `select` will return an empty array.
+
 ### 17. How can you pass arguments to a block? Can you give an example?
+
+In Ruby, you can pass arguments to a block when you yield to it from within a method. Here's how it works:
+1.  In the method, you can pass arguments to `yield`:
+
+```ruby
+def example_method
+    yield(1, 2)
+end
+```
+
+2.  When calling the method, you define the block parameters to receive these arguments:
+
+```ruby
+example_method { |a, b| puts "Received #{a} and #{b}" }
+```
+The number of parameters in the block should match the number of arguments passed to `yield`. If you pass more arguments than the block expects, the extra ones are ignored. If you pass fewer, the missing ones are set to `nil`.
+
+Here's a more complete example:
+
+```ruby
+def my_method
+  yield("Hello", 42)
+end
+
+my_method do |greeting, number|
+  puts "#{greeting}, the answer is #{number}"
+end
+```
+
+This will output: "Hello, the answer is 42"
+
+Remember, the block parameters are local to the block and won't affect variables with the same names outside the block.
 
 ### 18. What is the difference between `{...}` and `do...end` when defining blocks?
 
