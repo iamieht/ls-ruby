@@ -21,6 +21,8 @@ random_greeting(name)
 # What will this code output and why?
 The code will raise a NameError exception because the initialization of the `greeting` variable cannot be done as the `greetings` Array is not accesible from within the method's body.
 
+Feedback from Phillip: good answers! One thing I'd be more specific about is why the error is thrown. Initializing `greeting` isn't the issue; attempting to reference `greetings` out of scope is. Your answer desribes this, but the way it's written is a little unclear about whether initializing `greeting` is the cause of the problem.
+
 # How many `name` variables exist in this code? How are they related?
 2 `name` variables exist. One local variable initialized in the main scope and one method local variable. Both variables reference the same object when the random_greeting is invoked and gets passed in the object referenced by local variable `name` and then bound to the method local variable `name`.
 
