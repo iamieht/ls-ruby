@@ -7,7 +7,7 @@ def create_people(names, ages)
   names.each_with_object({}) do |name, hash|
     hash['name'] = name
     hash['age'] = ages[index]
-    people << hash.clone
+    people << hash
     index += 1
   end
 
