@@ -44,3 +44,14 @@ end
 
 create_constant
 puts MY_CONSTANT
+
+#
+
+my_hash = { a: "ant", b: "bear", c: "cat" }
+
+my_hash.each_with_object({}) do |(key, value), hash|
+  hash[value] = key
+  p hash.object_id
+end
+
+p my_hash.object_id

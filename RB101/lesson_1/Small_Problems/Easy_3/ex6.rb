@@ -27,7 +27,9 @@
 ## Algorithm
 # - Define a method xor? that takes two arguments
 #   - if arg1 && arg2 || !arg1 && !arg2 return false
-#
+#   - if arg1 && !arg2 return true
+#   - if arg2 && !arg1 return true
+#   - else false
 
 
 

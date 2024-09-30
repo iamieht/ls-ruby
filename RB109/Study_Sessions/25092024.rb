@@ -9,6 +9,8 @@ sum = compute_sum(number)
 p sum
 p number
 
+it takes two arguments one number and th eother one is the block
+
 =begin
 This code snippet demonstrates the use of the upto method in Ruby. Here's a description of what it does:
 1.  1.upto(number) creates a range from 1 to the value of number.
