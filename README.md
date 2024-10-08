@@ -7,6 +7,6 @@
 | RB101     | CW17 - CW26 2024  |   55:28       |
 | RB109     | CW26 2024 - In Progress        |   104:11    |
 
-Last Update: CW41
+Last Update: CW40g
 
 
