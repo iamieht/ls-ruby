@@ -10,6 +10,29 @@ end
 
 example('hello')
 
+=begin
+This code outputs the string `hello` 3 times on separate lines and returns `nil`
+
+On line 10, we call the `example` method with the string object `hello` as an argument.
+
+On lines 1-8, we define the `example` method with a single parameter `str`, which is bound to `hello`.
+
+On line 2, the method local variable `i` is initialized and references the Integer object with value `3`.
+
+On line 3, we call the `loop` method with a `do..end` block as an argument.
+
+On line 4, we call the `puts` method with `str` as an argument, outputting `hello`.
+
+On line 5, we call the `-` method on the object referenced by `i` and we pass `1` as an argument. This method will decrement the value of `i` by `1` in each iteration.
+
+On line 6, the expression `if i == 0` is evaluated and once it evaluates as true, it will stop the `loop` execution and will `break` out of it.
+
+The `loop` is executed 3 times, outputting the string `hello` 3 times and returning `nil`.
+
+This code demonstrates the concept of object passing strategy, in which Ruby behaves as if "Pass-by-value" as the object passed in is not mutated. It also demonstrates the concept of local variable scope in relation to blocks after a method invocation and how local variables initialized in an outer scope can be accesed and modified inside the block.
+
+=end
+
 
 # Ex2
 animal = "dog"
