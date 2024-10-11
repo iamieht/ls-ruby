@@ -102,6 +102,24 @@ end
 
 puts MAX_VALUE
 
+=begin
+This code outputs 200 and raises some warning as the constant `MAX_VALUE` is reassigned.
+
+On line 1, the constant `MAX_VALUE` is initialized and references an Integer object with value `100`.
+
+On line 3, the `each` method is called on an Array object with elements `[1, 2, 3]` and gets passed a `do..end` block as an argument.
+
+Within the block, the block parameter `num` is assigned the yield values returned by the `each` method. In each iteration `num` is assigned to `1`, `2` and finally `3`.
+
+On line 4, the expression `if num == 2` is evaluated. In the second iteration, `num` is assigned the value `2`, so the expression evaluates as true and the constant `MAX_VALUE` is reassigned to `200`.
+
+On line 7, we call the `puts` method with the object referenced by `MAX_VALUE` as an argument, outputting `200`.
+
+This code snippet demonstrates the concept of scope of constants, in which they are acccesible inside a block (similar to local variables) and also the concept of local variable scope in relation to blocks after a method invocation.
+
+Important to mention that the purpose of constants is to remain unchanged and any reassignment will raise a warning by the Ruby interpreter.
+=end
+
 # Ex5
 result = [1, 2, 3, 4, 5].map do |num|
   num * 2 if num.even?
