@@ -125,3 +125,16 @@ result = [1, 2, 3, 4, 5].map do |num|
   num * 2 if num.even?
 end
 p result
+
+=begin
+This code outputs and return an Array object with 5 elements `[nil, 4, nil, 8, nil]`
+
+On line 1, the local variable `result` is initialized and references the return value of the `map` method invocation on an array object with values `[1, 2, 3, 4, 5]`. The `map` method invocation gets passed a `do.end` block as an argument and each element of the array is bound to the block parameter `num` during each iteration, respectively.
+
+On line 2, the expression `if num.even?` is evaluated for each element of the array and if evaluates as true, it returns the element * 2, otherwise returns `nil`, which is then appended to the new array object returned by the `map` method invocation.
+
+On line 4, we call the `p` method with `result` as an argument, outputting and returning the a new Array object with 5 elements `[nil, 4, nil, 8, nil]`
+
+This code snippet demonstrates the behavior of the `map` method invocation and how it returns a new array object with the elements of the return values from the block.
+
+=end
